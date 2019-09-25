@@ -8,8 +8,27 @@
 	<artifactId>tidy-up</artifactId>
 	<version>0.0.1-feature_toolchain.c76b4af</version>
 	<name>tidy up</name>
-	<description>a demo app</description>
-	<url>http://github.com/kode-konveyor/cdd</url>
+	<url>http://maven.apache.org</url>
+	<description>A work exchange MVP</description>
+	<licenses>
+		<license>
+			<name>GNU GPL v3 or any later</name>
+			<url>https://www.gnu.org/licenses/gpl-3.0.en.html</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Kode Konveyor OU</name>
+			<email>info@kodekonveyor.com</email>
+			<organization>Kode Konveyor OU</organization>
+			<organizationUrl>https://kodekonveyor.com</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:git://github.com/kode-konveyor/tidy-up.git</connection>
+		<developerConnection>scm:git:ssh://github.com:kode-konveyor/tidy-up.git</developerConnection>
+		<url>http://github.com/kode-konveyor/tidy-up/tree/master</url>
+	</scm>
 
 	<properties>
 		<sonar.github.repository>kode-konveyor/tidy-up</sonar.github.repository>
