@@ -2,7 +2,7 @@
 <check
 	title="Model Errors"
       	modelfile="tidyup.rich"
-      	modelbasepath="//error[stage/@value='analysis']"
+      	modelbasepath="//error"
       	modelnamepath="@type"
       	modelvaluepath="concat(//element[@id=current()/@element]/@name,' ',@name)"
         modelerrorid="$p1/object/error/@errorID"

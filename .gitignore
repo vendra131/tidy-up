@@ -16,5 +16,12 @@ tidyup.rich
 tidyup.richescape
 tidyup.tabled.docbook
 tidyup.tabled.html
+testcases.txt
+testcases.xml
+tidyup.interfaces
+tidyup.stubs
+tidyup.testdata
+tidyup.zenta.bak
 /tidyup/
 zentaworkaround
+.attach*
