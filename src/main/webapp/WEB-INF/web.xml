@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+    http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+	<context-param>
+	    <param-name>contextConfigLocation</param-name>
+	    <param-value>/WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+	<context-param>
+		<!--  The url on the server where the user should be redirected to log in -->
+	    <param-name>com.kodekonveyor.tidyup.loginUrl</param-name>
+	    <param-value>/login</param-value>
+	</context-param>
+	<context-param>
+		<!--  The jdbc uri of the database -->
+	    <param-name>com.kodekonveyor.tidyup.jdbcUri</param-name>
+	    <param-value>jdbc:postgresql://db.kodekonveyor.com:5432/users?user=market&amp;ssl=true</param-value>
+	</context-param>
+	<context-param>
+		<!--  The JDBC driver class. If you use other driver, you should make sure it is in classpath -->
+	    <param-name>com.kodekonveyor.tidyup.jdbcDriver</param-name>
+	    <param-value>org.postgresql.Driver</param-value>
+	</context-param>
+</web-app>
