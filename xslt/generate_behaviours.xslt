@@ -76,21 +76,17 @@ You should probably start at <xsl:value-of select="concat(@package, '.', @servic
 
 <xsl:copy-of select="$zenta//element[@id=current()/behaviour/element/@id]/documentation/(*|text())"/>
 
-Relevant views:
-            <xsl:variable name="servicepics" select="$zenta//element[.//child[@zentaElement=current()/service/element/@id]]/@id"/>
-            <xsl:variable name="behaviourpics" select="$zenta//element[.//child[@zentaElement=current()/behaviour/element/@id]]/@id"/>
-            <xsl:for-each select="distinct-values($behaviourpics intersect $servicepics)">
-<xsl:copy-of select="zenta:drawpic(.)"/>
-            </xsl:for-each>
-
-More about the service:
-            <xsl:for-each select="distinct-values($servicepics except $behaviourpics)">
+  <xsl:variable name="serviceview" select="$zenta//element[@id=current()/service/element/@id]/../*[.//child[@zentaElement=current()/service/element/@id]]"/>
+  <xsl:variable name="dataobjects" select="$rich//element[@id=$serviceview//@zentaElement and (@xsi:type='DTO' or @xsi:type='Entity')]"/>
+The service:
+	<xsl:for-each select="$serviceview/@id">
                 <xsl:copy-of select="zenta:drawpic(.)"/>
-            </xsl:for-each>
-More about the behaviour:
-            <xsl:for-each select="distinct-values($behaviourpics except $servicepics)">
-                <xsl:copy-of select="zenta:drawpic(.)"/>
-            </xsl:for-each>
+        </xsl:for-each>
+DTOs and Entities:
+	<xsl:for-each select="$dataobjects">
+        <xsl:variable name="view" select="../*[.//@zentaElement=current()/@id]"/>
+                <xsl:copy-of select="zenta:drawpic($view/@id)"/>
+        </xsl:for-each>
 
 If you have questions, see the [FAQ](https://kodekonveyor.com/coder-faq/), ask on the [Telegram channel](https://t.me/joinchat/D1deE0loEBoFGvyDssWRuw) or ask your mentor.
 
