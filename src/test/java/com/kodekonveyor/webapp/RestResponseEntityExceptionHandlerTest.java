@@ -20,6 +20,8 @@ import org.mockito.quality.Strictness;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.context.request.WebRequest;
 
+import com.kodekonveyor.authentication.UserTestData;
+
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 @RunWith(MockitoJUnitRunner.class)
@@ -37,7 +39,8 @@ public class RestResponseEntityExceptionHandlerTest {
 
 	@BeforeEach
 	public void setUp() {
-		testData = new WebappTestData();
+		UserTestData userTestData = new UserTestData();
+		testData = new WebappTestData(userTestData);
 		restResponseEntityExceptionHandler.loginUrl = testData.LOGIN_URL;
 		final NotLoggedInException exception = mock(NotLoggedInException.class);
 		final WebRequest request = mock(WebRequest.class);

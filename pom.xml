@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.kodekonveyor</groupId>
 	<artifactId>tidy-up</artifactId>
-	<version>0.0.1-feature_design4.75bdaf0</version>
+	<version>0.0.1-develop.33fb1db</version>
 	<name>tidy up</name>
 	<url>http://maven.apache.org</url>
 	<description>A work exchange MVP</description>
@@ -409,6 +409,11 @@
 	      <groupId>org.eclipse.jetty</groupId>
 	      <artifactId>jetty-webapp</artifactId>
 	    </dependency>
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		</dependency>
+
 	</dependencies>
 </project>
 

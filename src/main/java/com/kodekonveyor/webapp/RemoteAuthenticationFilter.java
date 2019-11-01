@@ -16,13 +16,13 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.kodekonveyor.authentication.UserEntity;
-import com.kodekonveyor.authentication.UserRepository;
+import com.kodekonveyor.authentication.UserEntityRepository;
 
 @InterfaceClass
 public class RemoteAuthenticationFilter implements Filter {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserEntityRepository userRepository;
 
 	@Autowired
 	private LoggerService loggerService;
