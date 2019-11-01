@@ -25,6 +25,8 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.springframework.security.core.Authentication;
 
+import com.kodekonveyor.annotations.TestedBehaviour;
+import com.kodekonveyor.annotations.TestedService;
 import com.kodekonveyor.authentication.UserEntityRepository;
 import com.kodekonveyor.authentication.UserEntityRepositoryStubs;
 import com.kodekonveyor.authentication.UserTestData;
@@ -32,6 +34,8 @@ import com.kodekonveyor.authentication.UserTestData;
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 @RunWith(MockitoJUnitRunner.class)
+@TestedBehaviour("Puts the remote user into the Authentication object")
+@TestedService("RemoteAuthenticationFilter")
 public class RemoteAuthenticationFilterTest {
 
 	@InjectMocks

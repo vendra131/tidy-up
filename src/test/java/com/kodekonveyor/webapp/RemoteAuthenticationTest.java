@@ -14,12 +14,16 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
+import com.kodekonveyor.annotations.TestedBehaviour;
+import com.kodekonveyor.annotations.TestedService;
 import com.kodekonveyor.authentication.UserEntity;
 import com.kodekonveyor.authentication.UserTestData;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 @RunWith(MockitoJUnitRunner.class)
+@TestedBehaviour("Uses the userEntity to return various data")
+@TestedService("RemoteAuthentication")
 public class RemoteAuthenticationTest {
 
 	private RemoteAuthentication auth;
