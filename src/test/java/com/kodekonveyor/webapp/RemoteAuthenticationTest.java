@@ -15,18 +15,19 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import com.kodekonveyor.authentication.UserEntity;
+import com.kodekonveyor.authentication.UserTestData;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 @RunWith(MockitoJUnitRunner.class)
 public class RemoteAuthenticationTest {
 
-	private WebappTestData testData;
 	private RemoteAuthentication auth;
+	private UserTestData testData;
 
 	@BeforeEach
 	public void setUp() {
-		testData = new WebappTestData();
+		testData = new UserTestData();
 		auth = new RemoteAuthentication(testData.USER);
 	}
 
