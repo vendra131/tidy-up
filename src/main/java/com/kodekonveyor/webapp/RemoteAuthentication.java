@@ -39,7 +39,6 @@ public class RemoteAuthentication implements Authentication {
 	}
 
 	@Override
-	@ExcludeFromCodeCoverage("PIT gives false positive on boolean return")
 	public boolean isAuthenticated() {
 		return true;
 	}

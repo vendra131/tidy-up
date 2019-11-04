@@ -7,7 +7,7 @@ include /usr/local/toolchain/rules.java
 
 all: install shippable/behaviours.xml pmdcheck coveragecheck
 
-shippable/behaviours.xml: tidyup.rich
+shippable/behaviours.xml: tidyup.rich shippable/$(MODEL_BASENAME)-implementedBehaviours.xml
 	zenta-xslt-runner -xsl:xslt/generate_behaviours.xslt -s tidyup.rich modelbasename=tidyup reponame=tidy-up github_org=kode-konveyor
 
 shippable/$(MODEL_BASENAME)-implementedBehaviours.xml shippable/$(MODEL_BASENAME)-implementedBehaviours.docbook: buildreports shippable $(MODEL_BASENAME).rich

@@ -72,7 +72,7 @@ public class AuthenticatedUserServiceDataAccessTest {
 	}
 
 	@Test
-	@DisplayName("When returned credential is null, we throw NotLoggedInException")
+	@DisplayName("When returned credential is null, the message is 'No Credential'")
 	public void test5() {
 		AuthenticationStubs.nullCredential();
 		tester.assertThrows(() -> authenticatedUserService.call()).assertMessageIs(userTestData.NO_CREDENTIAL);

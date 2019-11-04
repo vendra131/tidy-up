@@ -16,6 +16,8 @@
 	<xsl:param name="github_org" />
 
     <xsl:variable name="zenta" select="document(concat($modelbasename,'.zenta'))"/>
+    <xsl:variable name="implemented" select="document(concat('shippable/',$modelbasename,'-implementedBehaviours.xml'))"/>
+    <xsl:variable name="issues" select="document(concat('inputs/',$modelbasename,'.issues.xml'))"/>
     <xsl:variable name="rich" select="/"/>
 
 	<xsl:template match="/">
@@ -33,6 +35,17 @@
 			href="shippable/behaviours.xml">
 			<xsl:copy-of select="$behaviours" />
 		</xsl:result-document>
+        <xsl:copy-of select="
+        codepoints-to-string(10),
+        $behaviours//task/concat(
+            @status,
+            substring(':                  ',1,20 - string-length(@status)),
+            @service,'/',
+            @behaviour,' ',
+            @issueUrl,
+            codepoints-to-string(10)),
+        codepoints-to-string(10)
+        "/>
 	</xsl:template>
 
 
@@ -134,6 +147,28 @@ If you have questions, see the [FAQ](https://kodekonveyor.com/coder-faq/), ask o
                     <xsl:attribute name="service" select="@name"/>
                     <xsl:attribute name="behaviour" select="$behaviour/@name"/>
                     <xsl:attribute name="package" select="zenta:fullpackage(.)"/>
+                    <xsl:variable name="implementedBehaviour" select="$implemented//behaviour[@name = $behaviour/@name and ../@service=current()/@name]"/>
+                    <xsl:variable name="issue" select="$issues//issue[summary=concat(current()/@name,'/',$behaviour/@name)]"/>
+                    <xsl:attribute name="issueUrl" select="$issue/@url"/>
+                    <xsl:attribute name="status" select="
+                        if($issue/@status = 'open')
+                        then
+                            if(not($implementedBehaviour/testcase))
+                            then
+                                'open'
+                            else
+                                'should-be-closed'
+                        else
+                            if(not($implementedBehaviour/testcase))
+                            then
+                                'should-make-issue'
+                            else
+                                'ready'
+                    "/>
+                    <implemented>
+                        <xsl:copy-of select="$implementedBehaviour/testcase"/>
+                    </implemented>
+                    <xsl:copy-of select="$issue"/>
                     <service><xsl:copy-of select="."/></service>
                     <behaviour><xsl:copy-of select="$behaviour"/></behaviour>
                 </task>
