@@ -70,7 +70,7 @@ public class RemoteAuthenticationFilterTest {
 		UserEntityRepositoryStubs.behaviour(userRepository, userTestData);
 	}
 
-	@DisplayName("if authenticated, does not set authenticaed user")
+	@DisplayName("if authenticated, does not set authenticated user")
 	@Test
 	public void test() throws IOException, ServletException {
 		AuthenticationStubs.authenticated(userTestData);

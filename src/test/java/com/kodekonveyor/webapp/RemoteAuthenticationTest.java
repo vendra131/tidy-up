@@ -77,7 +77,7 @@ public class RemoteAuthenticationTest {
 		assertThat(auth.isAuthenticated()).isTrue();
 	}
 
-	@DisplayName("isAuthenticated returns true")
+	@DisplayName("use of setAuthenticated throws IllegalArgumentException")
 	@Test
 	public void test5() {
 		Assertions.assertThrows(IllegalArgumentException.class, () -> auth.setAuthenticated(true));
