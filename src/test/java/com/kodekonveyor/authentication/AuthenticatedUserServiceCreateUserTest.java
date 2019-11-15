@@ -29,6 +29,7 @@ public class AuthenticatedUserServiceCreateUserTest {
 	private AuthenticatedUserService authenticatedUserService;
 	@Mock
 	private UserEntityRepository userEntityRepository;
+
 	private UserTestData userTestData;
 
 	@BeforeEach
@@ -38,8 +39,6 @@ public class AuthenticatedUserServiceCreateUserTest {
 	}
 
 	@Test
-	@TestedBehaviour("Creates user if does not exist")
-	@TestedService("AuthenticatedUserService")
 	@DisplayName("When there is no user for the credential, we create it")
 	public void test6() {
 		AuthenticationStubs.badAuthenticated(userTestData);

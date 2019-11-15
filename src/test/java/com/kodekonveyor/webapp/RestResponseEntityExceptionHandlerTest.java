@@ -1,7 +1,6 @@
 package com.kodekonveyor.webapp;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import java.util.List;
@@ -18,7 +17,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.context.request.WebRequest;
 
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
@@ -38,30 +36,29 @@ public class RestResponseEntityExceptionHandlerTest {
 	@Mock
 	private LoggerService loggerService;
 
-	private WebappTestData testData;
+	private WebappTestData webAppTestData;
 
 	private ResponseEntity<Object> response;
 
 	@BeforeEach
 	public void setUp() {
 		final UserTestData userTestData = new UserTestData();
-		testData = new WebappTestData(userTestData);
-		restResponseEntityExceptionHandler.loginUrl = testData.LOGIN_URL;
-		final NotLoggedInException exception = mock(NotLoggedInException.class);
-		final WebRequest request = mock(WebRequest.class);
-		response = restResponseEntityExceptionHandler.handleNotLoggedInException(exception, request);
+		webAppTestData = new WebappTestData(userTestData);
+		restResponseEntityExceptionHandler.loginUrl = webAppTestData.LOGIN_URL;
+		response = restResponseEntityExceptionHandler.handleNotLoggedInException(webAppTestData.NOT_LOGGED_IN_EXCEPTION,
+				webAppTestData.WEB_REQUEST);
 	}
 
 	@DisplayName("logs 'not logged in'")
 	@Test
 	public void test() {
-		verify(loggerService).call(testData.NOT_LOGGED_IN);
+		verify(loggerService).call(webAppTestData.NOT_LOGGED_IN);
 	}
 
 	@DisplayName("returns a header with the location set based on configuration parameter")
 	@Test
 	public void test2() {
-		assertEquals(List.of(testData.LOGIN_URL), response.getHeaders().get("Location"));
+		assertEquals(List.of(webAppTestData.LOGIN_URL), response.getHeaders().get("Location"));
 	}
 
 }

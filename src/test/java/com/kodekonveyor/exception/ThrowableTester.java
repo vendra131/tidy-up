@@ -17,6 +17,10 @@ import com.kodekonveyor.webapp.InterfaceClass;
 public class ThrowableTester {// NOPMD
 
 	public Throwable thrown;
+	private static ThrowableTester tester = new ThrowableTester();
+
+	private ThrowableTester() {
+	}
 
 	public ThrowableTester assertMessageIs(final String message) {
 		assertEquals(message, thrown.getMessage());
@@ -69,7 +73,11 @@ public class ThrowableTester {// NOPMD
 		return this;
 	}
 
-	public ThrowableTester assertThrows(final Thrower thrower) {
+	public static ThrowableTester assertThrows(final Thrower thrower) {
+		return tester.doAssertThrows(thrower);
+	}
+
+	public ThrowableTester doAssertThrows(final Thrower thrower) {
 		try {
 			thrower.throwException();
 		} catch (final Throwable exception) { // NOPMD AvoidCatchingThrowable
