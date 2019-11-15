@@ -92,7 +92,7 @@ public class RemoteAuthenticationFilterTest {
 		AuthenticationStubs.nullAuthentication();
 		remoteAuthenticationFilter.doFilter(testData.REQUEST, servletResponse, filterChain);
 		verify(loggerService).call(stringCaptor.capture());
-		TestHelper.assertContains("authenticated", stringCaptor.getValue());
+		WebappTestHelper.assertContains("authenticated", stringCaptor.getValue());
 	}
 
 	@DisplayName("if Authentication is null, sets the remote user as authenticated")

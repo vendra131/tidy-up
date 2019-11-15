@@ -31,14 +31,13 @@ public class AuthenticatedUserServiceDataAccessTest {
 	private AuthenticatedUserService authenticatedUserService;
 	@Mock
 	private UserEntityRepository userEntityRepository;
+
 	private UserTestData userTestData;
-	private ThrowableTester tester;
 
 	@BeforeEach
 	public void setUp() {
 		userTestData = new UserTestData();
 		UserEntityRepositoryStubs.behaviour(userEntityRepository, userTestData);
-		tester = new ThrowableTester();
 	}
 
 	@Test
@@ -52,29 +51,28 @@ public class AuthenticatedUserServiceDataAccessTest {
 	@DisplayName("When authentication object is null, we throw NotLoggedInException")
 	public void test2() {
 		AuthenticationStubs.nullAuthentication();
-		final ThrowableTester tester = new ThrowableTester();
-		tester.assertThrows(() -> authenticatedUserService.call()).assertException(NotLoggedInException.class);
+		ThrowableTester.assertThrows(() -> authenticatedUserService.call()).assertException(NotLoggedInException.class);
 	}
 
 	@Test
 	@DisplayName("When authentication object is null, the message is 'No Authentication'")
 	public void test3() {
 		AuthenticationStubs.nullAuthentication();
-		final ThrowableTester tester = new ThrowableTester();
-		tester.assertThrows(() -> authenticatedUserService.call()).assertMessageIs(userTestData.NO_AUTHENTICATION);
+		ThrowableTester.assertThrows(() -> authenticatedUserService.call())
+				.assertMessageIs(userTestData.NO_AUTHENTICATION);
 	}
 
 	@Test
 	@DisplayName("When returned credential is null, we throw NotLoggedInException")
 	public void test4() {
 		AuthenticationStubs.nullCredential();
-		tester.assertThrows(() -> authenticatedUserService.call()).assertException(NotLoggedInException.class);
+		ThrowableTester.assertThrows(() -> authenticatedUserService.call()).assertException(NotLoggedInException.class);
 	}
 
 	@Test
 	@DisplayName("When returned credential is null, the message is 'No Credential'")
 	public void test5() {
 		AuthenticationStubs.nullCredential();
-		tester.assertThrows(() -> authenticatedUserService.call()).assertMessageIs(userTestData.NO_CREDENTIAL);
+		ThrowableTester.assertThrows(() -> authenticatedUserService.call()).assertMessageIs(userTestData.NO_CREDENTIAL);
 	}
 }

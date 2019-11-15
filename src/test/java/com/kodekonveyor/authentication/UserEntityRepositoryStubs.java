@@ -13,7 +13,6 @@ public class UserEntityRepositoryStubs {
 		doReturn(userTestData.EMPTY_LIST).when(userRepository).findByAuth0id(userTestData.BAD_AUTH0ID);
 
 		final Answer<UserEntity> answer = new Answer<>() {
-
 			@Override
 			public UserEntity answer(final InvocationOnMock invocation) {
 				final Object[] args = invocation.getArguments();
