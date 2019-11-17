@@ -1,5 +1,11 @@
 package com.kodekonveyor.work_request;
 
-public class AddressDTO {
+import lombok.Data;
 
+@Data
+public class AddressDTO {
+	private long id;
+	private String address;
+	private String city;
+	private String country;
 }
