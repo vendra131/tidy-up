@@ -3,6 +3,8 @@ package com.kodekonveyor.authentication;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
+import java.util.Optional;
+
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
@@ -11,6 +13,7 @@ public class UserEntityRepositoryStubs {
 	public static void behaviour(final UserEntityRepository userRepository, final UserTestData userTestData) {
 		doReturn(userTestData.USER_LIST).when(userRepository).findByAuth0id(userTestData.AUTH0ID);
 		doReturn(userTestData.EMPTY_LIST).when(userRepository).findByAuth0id(userTestData.BAD_AUTH0ID);
+		doReturn(Optional.of(userTestData.USER)).when(userRepository).findById(userTestData.USER_ID);
 
 		final Answer<UserEntity> answer = new Answer<>() {
 			@Override

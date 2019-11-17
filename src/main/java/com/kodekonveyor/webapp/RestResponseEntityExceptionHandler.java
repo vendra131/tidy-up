@@ -20,7 +20,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 	@Value("${com.kodekonveyor.tidyup.loginUrl}")
 	public String loginUrl;
 
-	@ExceptionHandler(NotLoggedInException.class)
+	@ExceptionHandler({ NotLoggedInException.class, ValidationException.class })
 	protected ResponseEntity<Object> handleNotLoggedInException(final NotLoggedInException exception,
 			final WebRequest request) {
 		final String bodyOfResponse = exception.getMessage();
@@ -30,4 +30,5 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 		headers.add("Location", loginUrl);
 		return handleExceptionInternal(exception, bodyOfResponse, headers, HttpStatus.FOUND, request);
 	}
+
 }
