@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kodekonveyor.work_request.WorkRequestDTO;
 import com.kodekonveyor.work_request.WorkRequestEntity;
 import com.kodekonveyor.work_request.WorkRequestRepository;
+import com.kodekonveyor.work_request.WorkRequestUtil;
 
 @Controller
 public class OpenWorkRequestController {
@@ -15,14 +16,10 @@ public class OpenWorkRequestController {
 	@Autowired
 	private WorkRequestRepository workRequestRepository;
 
-	@GetMapping("workRequest/own/@workRequestId")
+	@GetMapping("/workRequest/own/@workRequestId")
 	public WorkRequestDTO call(@RequestParam final long workRequestId) {
 		final WorkRequestEntity workRequestEntity = workRequestRepository.findByWorkRequestId(workRequestId).get(0);
-		final WorkRequestDTO workRequestDTO = new WorkRequestDTO();
-		workRequestDTO.setWorkRequestId(workRequestEntity.getId());
-		workRequestDTO.setWorkType(workRequestEntity.getWorkType());
-
-		return workRequestDTO;
+		return WorkRequestUtil.convertWorkRequestEntityToDTO(workRequestEntity);
 	}
 
 }

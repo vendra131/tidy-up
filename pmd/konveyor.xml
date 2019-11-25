@@ -85,6 +85,8 @@ public interface Matrix<KeyType extends Serializable, ValueType extends Serializ
    matches(@Image,'[A-Z][a-z0-9]*Factory$') or
    matches(@Image,'[A-Z][a-z0-9]*Constants$') or
    matches(@Image,'[A-Z][a-z0-9]*Exception$') or
+   matches(@Image,'[A-Z][a-z0-9]*Util$') or
+   matches(@Image,'[A-Z][a-z0-9]*TestBase$') or
    matches(@Image,'[A-Z][a-z0-9]*Stubs$')
 ) and not(
    ../Annotation/MarkerAnnotation/Name/@Image = 'InterfaceClass' or

@@ -24,9 +24,10 @@ public class CustomerGetWorkRequestsController {
 		final List<WorkRequestEntity> requests = workRequestRepository.findByCustomer(user.get());
 		final WorkRequestListDTO workRequestListDTO = new WorkRequestListDTO();
 		for (final WorkRequestEntity workRequestEntity : requests) {
-			final WorkRequestDTO workRequestDTO = createWorkRequset();
+			final WorkRequestDTO workRequestDTO = createWorkRequest();
 			workRequestDTO.setWorkType(workRequestEntity.getWorkType());
 			workRequestDTO.setWorkRequestId(workRequestEntity.getId());
+			workRequestDTO.setDescription(workRequestEntity.getDescription());
 			workRequestListDTO.getRequests().add(workRequestDTO);
 
 		}
@@ -34,7 +35,7 @@ public class CustomerGetWorkRequestsController {
 		return workRequestListDTO;
 	}
 
-	private WorkRequestDTO createWorkRequset() {
+	private WorkRequestDTO createWorkRequest() {
 		return new WorkRequestDTO();
 	}
 

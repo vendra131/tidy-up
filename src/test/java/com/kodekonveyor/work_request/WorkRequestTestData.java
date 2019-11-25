@@ -54,6 +54,7 @@ public class WorkRequestTestData {
 		final WorkRequestDTO workRequestDTO = new WorkRequestDTO();
 		workRequestDTO.setWorkRequestId(WORK_REQUEST_ID);
 		workRequestDTO.setWorkType(WORK_TYPE);
+		workRequestDTO.setDescription(DESCRIPTION);
 		return workRequestDTO;
 	}
 }
