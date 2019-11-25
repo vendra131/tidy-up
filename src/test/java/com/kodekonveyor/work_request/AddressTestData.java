@@ -1,7 +1,7 @@
 
 package com.kodekonveyor.work_request;
 
-class AddressTestData {
+public class AddressTestData {
 
 	public final AddressEntity ADDRESS_ENTITY;
 	public final String ADDRESS = "Männimäe, 74626";
