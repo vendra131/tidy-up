@@ -3,6 +3,7 @@ package com.kodekonveyor.work_request;
 import java.util.List;
 
 import com.kodekonveyor.authentication.UserTestData;
+import com.kodekonveyor.work_request.create.CreateWorkRequestDTO;
 
 public class WorkRequestTestData {
 	public final String OWNER_ID = "4242";
@@ -16,19 +17,43 @@ public class WorkRequestTestData {
 	public List<WorkRequestEntity> WORK_REQUEST_ENTITY_LIST;
 	public final String NULL_OWNERID = "No OwnerId";
 	public final UserTestData userTestData;
+	public final AddressTestData addressTestData;
+	public final CreateWorkRequestDTO CREATE_WORK_REQUEST;
 
-	public WorkRequestTestData(final UserTestData userTestData) {
+	public WorkRequestTestData(final UserTestData userTestData, final AddressTestData addressTestData) {
 		this.userTestData = userTestData;
-		WORK_REQUEST_ENTITY = new WorkRequestEntity();
-		WORK_REQUEST_ENTITY.setCustomer(userTestData.USER);
-		WORK_REQUEST_ENTITY.setWorkType(WORK_TYPE);
-		WORK_REQUEST_ENTITY.setId(WORK_REQUEST_ID);
-		WORK_REQUEST_DTO = new WorkRequestDTO();
-		WORK_REQUEST_DTO.setWorkRequestId(WORK_REQUEST_ID);
-		WORK_REQUEST_DTO.setWorkType(WORK_TYPE);
+		this.addressTestData = addressTestData;
+		WORK_REQUEST_ENTITY = createWORK_REQUEST_ENTITY();
+		WORK_REQUEST_DTO = createWORK_REQUEST_DTO();
 		WORK_REQUEST_LIST_DTO = new WorkRequestListDTO();
 		WORK_REQUEST_LIST_DTO.setRequests(List.of(WORK_REQUEST_DTO));
 		WORK_REQUEST_ENTITY_LIST = List.of(WORK_REQUEST_ENTITY);
+		CREATE_WORK_REQUEST = createCREATE_WORK_REQUEST();
 	}
 
+	private CreateWorkRequestDTO createCREATE_WORK_REQUEST() {
+		final CreateWorkRequestDTO createWorkRequest = new CreateWorkRequestDTO();
+		createWorkRequest.setCustomerId(WORK_REQUEST_ID);
+		createWorkRequest.setWorkType(WORK_TYPE);
+		createWorkRequest.setDescription(DESCRIPTION);
+		createWorkRequest.setAddress(addressTestData.ADDRESS_DTO);
+		return createWorkRequest;
+	}
+
+	private WorkRequestEntity createWORK_REQUEST_ENTITY() {
+		final WorkRequestEntity workRequestEntity = new WorkRequestEntity();
+		workRequestEntity.setCustomer(userTestData.USER);
+		workRequestEntity.setWorkType(WORK_TYPE);
+		workRequestEntity.setId(WORK_REQUEST_ID);
+		workRequestEntity.setDescription(DESCRIPTION);
+		workRequestEntity.setAddress(addressTestData.ADDRESS_ENTITY);
+		return workRequestEntity;
+	}
+
+	private WorkRequestDTO createWORK_REQUEST_DTO() {
+		final WorkRequestDTO workRequestDTO = new WorkRequestDTO();
+		workRequestDTO.setWorkRequestId(WORK_REQUEST_ID);
+		workRequestDTO.setWorkType(WORK_TYPE);
+		return workRequestDTO;
+	}
 }

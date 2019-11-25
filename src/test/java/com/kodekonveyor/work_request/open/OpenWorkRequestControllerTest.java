@@ -17,6 +17,7 @@ import org.mockito.quality.Strictness;
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
 import com.kodekonveyor.authentication.UserTestData;
+import com.kodekonveyor.work_request.AddressTestData;
 import com.kodekonveyor.work_request.WorkRequestRepository;
 import com.kodekonveyor.work_request.WorkRequestRepositoryStub;
 import com.kodekonveyor.work_request.WorkRequestTestData;
@@ -36,7 +37,8 @@ public class OpenWorkRequestControllerTest {
 	@BeforeEach
 	public void setUp() {
 		final UserTestData userTestData = new UserTestData();
-		workRequestTestData = new WorkRequestTestData(userTestData);
+		final AddressTestData addressTestData = new AddressTestData();
+		workRequestTestData = new WorkRequestTestData(userTestData, addressTestData);
 		WorkRequestRepositoryStub.behaviour(workRequestRepository, workRequestTestData);
 	}
 
