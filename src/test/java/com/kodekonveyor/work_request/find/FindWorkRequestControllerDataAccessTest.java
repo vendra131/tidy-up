@@ -20,41 +20,50 @@ import com.kodekonveyor.annotations.TestedService;
 @TestedBehaviour("Data access")
 @TestedService("FindWorkRequestController")
 public class FindWorkRequestControllerDataAccessTest
-		extends FindWorkRequestControllerTestBase {
+    extends FindWorkRequestControllerTestBase {
 
-	@Test
-	@DisplayName("Description of work request is correctly filled in")
-	public void test1() {
-		assertEquals(
-				workRequestTestData.WORK_REQUEST_LIST_DTO.getRequests().get(0)
-						.getDescription(),
-				findWorkRequestController
-						.call(addressTestData.COUNTRY, addressTestData.CITY,
-								workRequestTestData.WORK_TYPE)
-						.getRequests().get(0).getDescription());
-	}
+  @Test
+  @DisplayName("Description of work request is correctly filled in")
+  public void test1() {
+    assertEquals(
+        workRequestTestData.WORK_REQUEST_LIST_DTO.getRequests().get(0)
+            .getDescription(),
+        findWorkRequestController
+            .call(
+                addressTestData.COUNTRY, addressTestData.CITY,
+                workRequestTestData.WORK_TYPE
+            )
+            .getRequests().get(0).getDescription()
+    );
+  }
 
-	@Test
-	@DisplayName("ID of work request is correctly filled in")
-	public void test2() {
-		assertEquals(
-				workRequestTestData.WORK_REQUEST_LIST_DTO.getRequests().get(0)
-						.getWorkRequestId(),
-				findWorkRequestController
-						.call(addressTestData.COUNTRY, addressTestData.CITY,
-								workRequestTestData.WORK_TYPE)
-						.getRequests().get(0).getWorkRequestId());
-	}
+  @Test
+  @DisplayName("ID of work request is correctly filled in")
+  public void test2() {
+    assertEquals(
+        workRequestTestData.WORK_REQUEST_LIST_DTO.getRequests().get(0)
+            .getWorkRequestId(),
+        findWorkRequestController
+            .call(
+                addressTestData.COUNTRY, addressTestData.CITY,
+                workRequestTestData.WORK_TYPE
+            )
+            .getRequests().get(0).getWorkRequestId()
+    );
+  }
 
-	@Test
-	@DisplayName("Worktype of work request is correctly filled in")
-	public void test3() {
-		assertEquals(
-				workRequestTestData.WORK_REQUEST_LIST_DTO.getRequests().get(0)
-						.getWorkType(),
-				findWorkRequestController
-						.call(addressTestData.COUNTRY, addressTestData.CITY,
-								workRequestTestData.WORK_TYPE)
-						.getRequests().get(0).getWorkType());
-	}
+  @Test
+  @DisplayName("Worktype of work request is correctly filled in")
+  public void test3() {
+    assertEquals(
+        workRequestTestData.WORK_REQUEST_LIST_DTO.getRequests().get(0)
+            .getWorkType(),
+        findWorkRequestController
+            .call(
+                addressTestData.COUNTRY, addressTestData.CITY,
+                workRequestTestData.WORK_TYPE
+            )
+            .getRequests().get(0).getWorkType()
+    );
+  }
 }

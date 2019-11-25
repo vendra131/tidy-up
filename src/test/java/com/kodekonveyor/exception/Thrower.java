@@ -6,5 +6,5 @@ import com.kodekonveyor.webapp.InterfaceClass;
 @InterfaceClass
 public interface Thrower {
 
-	void throwException() throws Throwable;
+  void throwException() throws Throwable;
 }

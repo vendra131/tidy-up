@@ -11,20 +11,25 @@ import com.kodekonveyor.work_request.WorkRequestRepositoryStub;
 import com.kodekonveyor.work_request.WorkRequestTestData;
 
 public class OpenWorkRequestControllerTestBase {
-	@InjectMocks
-	protected OpenWorkRequestController openWorkRequestController;
-	@Mock
-	protected WorkRequestRepository workRequestRepository;
-	protected WorkRequestTestData workRequestTestData;
 
-	@BeforeEach
-	protected void setUp() {
-		final UserTestData userTestData = new UserTestData();
-		final AddressTestData addressTestData = new AddressTestData();
-		workRequestTestData = new WorkRequestTestData(userTestData,
-				addressTestData);
-		WorkRequestRepositoryStub.behaviour(workRequestRepository,
-				workRequestTestData);
-	}
+  @InjectMocks
+  OpenWorkRequestController openWorkRequestController;
+  @Mock
+  WorkRequestRepository workRequestRepository;
+  WorkRequestTestData workRequestTestData;
+
+  @BeforeEach
+  void setUp() {
+    final UserTestData userTestData = new UserTestData();
+    final AddressTestData addressTestData = new AddressTestData();
+    workRequestTestData = new WorkRequestTestData(
+        userTestData,
+        addressTestData
+    );
+    WorkRequestRepositoryStub.behaviour(
+        workRequestRepository,
+        workRequestTestData
+    );
+  }
 
 }

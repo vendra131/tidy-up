@@ -5,17 +5,18 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 public class AuthenticatedUserServiceTestBase {
-	@InjectMocks
-	protected AuthenticatedUserService authenticatedUserService;
-	@Mock
-	protected UserEntityRepository userEntityRepository;
 
-	protected UserTestData userTestData;
+  @InjectMocks
+  AuthenticatedUserService authenticatedUserService;
+  @Mock
+  UserEntityRepository userEntityRepository;
 
-	@BeforeEach
-	protected void setUp() {
-		userTestData = new UserTestData();
-		UserEntityRepositoryStubs.behaviour(userEntityRepository, userTestData);
-	}
+  UserTestData userTestData;
+
+  @BeforeEach
+  void setUp() {
+    userTestData = new UserTestData();
+    UserEntityRepositoryStubs.behaviour(userEntityRepository, userTestData);
+  }
 
 }

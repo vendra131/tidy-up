@@ -21,13 +21,13 @@ import com.kodekonveyor.webapp.AuthenticationStubs;
 @TestedBehaviour("Data access")
 @TestedService("AuthenticatedUserService")
 public class AuthenticatedUserServiceCreateUserTest
-		extends AuthenticatedUserServiceTestBase {
+    extends AuthenticatedUserServiceTestBase {
 
-	@Test
-	@DisplayName("When there is no user for the credential, we create it")
-	public void test6() {
-		AuthenticationStubs.badAuthenticated(userTestData);
-		assertEquals(userTestData.BAD_USER, authenticatedUserService.call());
-	}
+  @Test
+  @DisplayName("When there is no user for the credential, we create it")
+  public void test6() {
+    AuthenticationStubs.badAuthenticated(userTestData);
+    assertEquals(userTestData.BAD_USER, authenticatedUserService.call());
+  }
 
 }

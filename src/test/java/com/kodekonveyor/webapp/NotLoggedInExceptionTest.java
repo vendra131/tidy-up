@@ -22,18 +22,18 @@ import com.kodekonveyor.annotations.TestedService;
 @TestedService("NotLoggedInException")
 public class NotLoggedInExceptionTest {
 
-	private static final String MESSAGE = "message";
-	private NotLoggedInException exception;
+  private static final String MESSAGE = "message";
+  private NotLoggedInException exception;
 
-	@BeforeEach
-	public void setUp() {
-		exception = new NotLoggedInException(MESSAGE);
-	}
+  @BeforeEach
+  public void setUp() {
+    exception = new NotLoggedInException(MESSAGE);
+  }
 
-	@DisplayName("the message is the exception message")
-	@Test
-	public void test() {
-		assertEquals(MESSAGE, exception.getMessage());
-	}
+  @DisplayName("the message is the exception message")
+  @Test
+  public void test() {
+    assertEquals(MESSAGE, exception.getMessage());
+  }
 
 }

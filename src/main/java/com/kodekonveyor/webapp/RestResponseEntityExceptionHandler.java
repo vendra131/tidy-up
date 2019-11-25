@@ -12,23 +12,30 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 @InterfaceClass
-public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+public class RestResponseEntityExceptionHandler
+    extends ResponseEntityExceptionHandler {
 
-	@Autowired
-	private LoggerService loggerService;
+  @Autowired
+  private LoggerService loggerService;
 
-	@Value("${com.kodekonveyor.tidyup.loginUrl}")
-	public String loginUrl;
+  @Value("${com.kodekonveyor.tidyup.loginUrl}")
+  public String loginUrl;
 
-	@ExceptionHandler({ NotLoggedInException.class, ValidationException.class })
-	protected ResponseEntity<Object> handleNotLoggedInException(final NotLoggedInException exception,
-			final WebRequest request) {
-		final String bodyOfResponse = exception.getMessage();
+  @ExceptionHandler({
+      NotLoggedInException.class, ValidationException.class
+  })
+  protected ResponseEntity<Object> handleNotLoggedInException(
+      final NotLoggedInException exception,
+      final WebRequest request
+  ) {
+    final String bodyOfResponse = exception.getMessage();
 
-		loggerService.call("not logged in");
-		final HttpHeaders headers = new HttpHeaders();
-		headers.add("Location", loginUrl);
-		return handleExceptionInternal(exception, bodyOfResponse, headers, HttpStatus.FOUND, request);
-	}
+    loggerService.call("not logged in");
+    final HttpHeaders headers = new HttpHeaders();
+    headers.add("Location", loginUrl);
+    return handleExceptionInternal(
+        exception, bodyOfResponse, headers, HttpStatus.FOUND, request
+    );
+  }
 
 }

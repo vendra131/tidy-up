@@ -13,13 +13,14 @@ import com.kodekonveyor.work_request.WorkRequestUtil;
 @Controller
 public class OpenWorkRequestController {
 
-	@Autowired
-	private WorkRequestRepository workRequestRepository;
+  @Autowired
+  private WorkRequestRepository workRequestRepository;
 
-	@GetMapping("/workRequest/own/@workRequestId")
-	public WorkRequestDTO call(@RequestParam final long workRequestId) {
-		final WorkRequestEntity workRequestEntity = workRequestRepository.findByWorkRequestId(workRequestId).get(0);
-		return WorkRequestUtil.convertWorkRequestEntityToDTO(workRequestEntity);
-	}
+  @GetMapping("/workRequest/own/@workRequestId")
+  public WorkRequestDTO call(@RequestParam final long workRequestId) {
+    final WorkRequestEntity workRequestEntity =
+        workRequestRepository.findByWorkRequestId(workRequestId).get(0);
+    return WorkRequestUtil.convertWorkRequestEntityToDTO(workRequestEntity);
+  }
 
 }

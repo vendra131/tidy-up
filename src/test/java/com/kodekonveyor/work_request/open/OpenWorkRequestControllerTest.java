@@ -20,14 +20,17 @@ import com.kodekonveyor.annotations.TestedService;
 @TestedBehaviour("Data access")
 @TestedService("OpenWorkRequestController")
 public class OpenWorkRequestControllerTest
-		extends OpenWorkRequestControllerTestBase {
-	@Test
-	@DisplayName("Controller returns right DTO based on requestId")
-	public void test() {
-		assertEquals(workRequestTestData.WORK_REQUEST_DTO,
-				openWorkRequestController
-						.call(workRequestTestData.WORK_REQUEST_ID));
+    extends OpenWorkRequestControllerTestBase {
 
-	}
+  @Test
+  @DisplayName("Controller returns right DTO based on requestId")
+  public void test() {
+    assertEquals(
+        workRequestTestData.WORK_REQUEST_DTO,
+        openWorkRequestController
+            .call(workRequestTestData.WORK_REQUEST_ID)
+    );
+
+  }
 
 }

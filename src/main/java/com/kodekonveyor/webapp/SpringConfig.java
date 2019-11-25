@@ -18,7 +18,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @SpringBootConfiguration
-@ComponentScan({ "com.kodekonveyor" })
+@ComponentScan({
+    "com.kodekonveyor"
+})
 @EnableAutoConfiguration
 @EntityScan("com.kodekonveyor")
 @EnableJpaRepositories("com.kodekonveyor")
@@ -28,23 +30,23 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ExcludeFromCodeCoverage("Configuration")
 public class SpringConfig implements WebMvcConfigurer {
 
-	@Value("${com.kodekonveyor.tidyup.jdbcUri}")
-	private String jdbcUri;
+  @Value("${com.kodekonveyor.tidyup.jdbcUri}")
+  private String jdbcUri;
 
-	@Value("${com.kodekonveyor.tidyup.jdbcDriver}")
-	private String jdbcDriver;
+  @Value("${com.kodekonveyor.tidyup.jdbcDriver}")
+  private String jdbcDriver;
 
-	@Bean
-	public ModelMapper modelMapper() {
-		return new ModelMapper();
-	}
+  @Bean
+  public ModelMapper modelMapper() {
+    return new ModelMapper();
+  }
 
-	@Bean
-	public DataSource dataSource() {
-		final DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
-		dataSourceBuilder.driverClassName(jdbcDriver);
-		dataSourceBuilder.url(jdbcUri);
-		return dataSourceBuilder.build();
-	}
+  @Bean
+  public DataSource dataSource() {
+    final DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
+    dataSourceBuilder.driverClassName(jdbcDriver);
+    dataSourceBuilder.url(jdbcUri);
+    return dataSourceBuilder.build();
+  }
 
 }

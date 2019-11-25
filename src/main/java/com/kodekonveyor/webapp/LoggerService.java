@@ -10,10 +10,11 @@ import com.kodekonveyor.tidyup.Application;
 @ExcludeFromCodeCoverage("proxy service")
 public class LoggerService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
+  private static final Logger LOGGER =
+      LoggerFactory.getLogger(Application.class);
 
-	public void call(final String msg) {
-		LOGGER.info(msg);
-	}
+  public void call(final String msg) {
+    LOGGER.info(msg);
+  }
 
 }
