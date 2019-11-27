@@ -30,52 +30,75 @@ import com.kodekonveyor.work_request.WorkRequestTestData;
 @TestedBehaviour("Data access")
 @TestedService("CreateWorkRequestController")
 public class CreateWorkRequestControllerTest {
-	@InjectMocks
-	private CreateWorkRequestController createWorkRequestController;
-	@Mock
-	private WorkRequestRepository workRequestRepository;
-	@Mock
-	private AuthenticatedUserService authenticatedUserService;
-	private WorkRequestTestData workRequestTestData;
 
-	@BeforeEach
-	public void setUp() {
-		final UserTestData userTestData = new UserTestData();
-		final AddressTestData addressTestData = new AddressTestData();
-		workRequestTestData = new WorkRequestTestData(userTestData, addressTestData);
-		AuthenticatedUserStubs.behaviour(authenticatedUserService, userTestData);
-		createWorkRequestController.call(workRequestTestData.CREATE_WORK_REQUEST);
-		verify(workRequestRepository).save(workRequestTestData.WORK_REQUEST_ENTITY);
-	}
+  @InjectMocks
+  private CreateWorkRequestController createWorkRequestController;
+  @Mock
+  private WorkRequestRepository workRequestRepository;
+  @Mock
+  private AuthenticatedUserService authenticatedUserService;
+  private WorkRequestTestData workRequestTestData;
 
-	@Test
-	@DisplayName("Controller files WorkType of WorkRequestEntity based on request")
-	public void test() {
-		assertEquals(workRequestTestData.WORK_TYPE, workRequestTestData.WORK_REQUEST_ENTITY.getWorkType());
-	}
+  @BeforeEach
+  public void setUp() {
+    final UserTestData userTestData = new UserTestData();
+    final AddressTestData addressTestData = new AddressTestData();
+    workRequestTestData =
+        new WorkRequestTestData(userTestData, addressTestData);
+    AuthenticatedUserStubs.behaviour(authenticatedUserService, userTestData);
+    createWorkRequestController.call(workRequestTestData.CREATE_WORK_REQUEST);
+    verify(workRequestRepository).save(workRequestTestData.WORK_REQUEST_ENTITY);
+  }
 
-	@Test
-	@DisplayName("Controller files Id of WorkRequestEntity based on request")
-	public void test1() {
-		assertEquals(workRequestTestData.WORK_REQUEST_ID, workRequestTestData.WORK_REQUEST_ENTITY.getId());
-	}
+  @Test
+  @DisplayName(
+    "Controller files WorkType of WorkRequestEntity based on request"
+  )
+  public void test() {
+    assertEquals(
+        workRequestTestData.WORK_TYPE,
+        workRequestTestData.WORK_REQUEST_ENTITY.getWorkType()
+    );
+  }
 
-	@Test
-	@DisplayName("Controller files Description of WorkRequestEntity based on request")
-	public void test2() {
-		assertEquals(workRequestTestData.DESCRIPTION, workRequestTestData.WORK_REQUEST_ENTITY.getDescription());
-	}
+  @Test
+  @DisplayName("Controller files Id of WorkRequestEntity based on request")
+  public void test1() {
+    assertEquals(
+        workRequestTestData.WORK_REQUEST_ID,
+        workRequestTestData.WORK_REQUEST_ENTITY.getId()
+    );
+  }
 
-	@Test
-	@DisplayName("Controller files customer of WorkRequestEntity based on request")
-	public void test3() {
-		assertEquals(workRequestTestData.userTestData.USER, workRequestTestData.WORK_REQUEST_ENTITY.getCustomer());
-	}
+  @Test
+  @DisplayName(
+    "Controller files Description of WorkRequestEntity based on request"
+  )
+  public void test2() {
+    assertEquals(
+        workRequestTestData.DESCRIPTION,
+        workRequestTestData.WORK_REQUEST_ENTITY.getDescription()
+    );
+  }
 
-	@Test
-	@DisplayName("Controller files address of WorkRequestEntity based on request")
-	public void test4() {
-		assertEquals(workRequestTestData.addressTestData.ADDRESS_ENTITY, workRequestTestData.WORK_REQUEST_ENTITY.getAddress());
-	}
+  @Test
+  @DisplayName(
+    "Controller files customer of WorkRequestEntity based on request"
+  )
+  public void test3() {
+    assertEquals(
+        workRequestTestData.userTestData.USER,
+        workRequestTestData.WORK_REQUEST_ENTITY.getCustomer()
+    );
+  }
+
+  @Test
+  @DisplayName("Controller files address of WorkRequestEntity based on request")
+  public void test4() {
+    assertEquals(
+        workRequestTestData.addressTestData.ADDRESS_ENTITY,
+        workRequestTestData.WORK_REQUEST_ENTITY.getAddress()
+    );
+  }
 
 }

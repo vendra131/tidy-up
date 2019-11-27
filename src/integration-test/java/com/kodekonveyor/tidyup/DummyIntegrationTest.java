@@ -9,8 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class DummyIntegrationTest {
 
-	@Test
-	public void test() {
-		Assertions.assertTrue(true);
-	}
+  @Test
+  public void test() {
+    Assertions.assertTrue(true);
+  }
 }

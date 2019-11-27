@@ -4,21 +4,26 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 @ExcludeFromCodeCoverage("Configuration")
 @InterfaceClass
-public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class WebInitializer
+    extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-	@Override
-	protected Class<?>[] getRootConfigClasses() {// NOPMD
-		return null;
-	}
+  @Override
+  protected Class<?>[] getRootConfigClasses() {// NOPMD
+    return null;
+  }
 
-	@Override
-	protected Class<?>[] getServletConfigClasses() {
-		return new Class<?>[] { SpringConfig.class };
-	}
+  @Override
+  protected Class<?>[] getServletConfigClasses() {
+    return new Class<?>[] {
+        SpringConfig.class
+    };
+  }
 
-	@Override
-	protected String[] getServletMappings() {
-		return new String[] { "/" };
-	}
+  @Override
+  protected String[] getServletMappings() {
+    return new String[] {
+        "/"
+    };
+  }
 
 }

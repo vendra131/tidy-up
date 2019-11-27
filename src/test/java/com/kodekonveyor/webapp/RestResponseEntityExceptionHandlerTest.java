@@ -30,35 +30,41 @@ import com.kodekonveyor.authentication.UserTestData;
 
 public class RestResponseEntityExceptionHandlerTest {
 
-	@InjectMocks
-	private RestResponseEntityExceptionHandler restResponseEntityExceptionHandler;
+  @InjectMocks
+  private RestResponseEntityExceptionHandler restResponseEntityExceptionHandler;
 
-	@Mock
-	private LoggerService loggerService;
+  @Mock
+  private LoggerService loggerService;
 
-	private WebappTestData webAppTestData;
+  private WebappTestData webAppTestData;
 
-	private ResponseEntity<Object> response;
+  private ResponseEntity<Object> response;
 
-	@BeforeEach
-	public void setUp() {
-		final UserTestData userTestData = new UserTestData();
-		webAppTestData = new WebappTestData(userTestData);
-		restResponseEntityExceptionHandler.loginUrl = webAppTestData.LOGIN_URL;
-		response = restResponseEntityExceptionHandler.handleNotLoggedInException(webAppTestData.NOT_LOGGED_IN_EXCEPTION,
-				webAppTestData.WEB_REQUEST);
-	}
+  @BeforeEach
+  public void setUp() {
+    final UserTestData userTestData = new UserTestData();
+    webAppTestData = new WebappTestData(userTestData);
+    restResponseEntityExceptionHandler.loginUrl = webAppTestData.LOGIN_URL;
+    response = restResponseEntityExceptionHandler.handleNotLoggedInException(
+        webAppTestData.NOT_LOGGED_IN_EXCEPTION,
+        webAppTestData.WEB_REQUEST
+    );
+  }
 
-	@DisplayName("logs 'not logged in'")
-	@Test
-	public void test() {
-		verify(loggerService).call(webAppTestData.NOT_LOGGED_IN);
-	}
+  @DisplayName("logs 'not logged in'")
+  @Test
+  public void test() {
+    verify(loggerService).call(webAppTestData.NOT_LOGGED_IN);
+  }
 
-	@DisplayName("returns a header with the location set based on configuration parameter")
-	@Test
-	public void test2() {
-		assertEquals(List.of(webAppTestData.LOGIN_URL), response.getHeaders().get("Location"));
-	}
+  @DisplayName(
+    "returns a header with the location set based on configuration parameter"
+  )
+  @Test
+  public void test2() {
+    assertEquals(
+        List.of(webAppTestData.LOGIN_URL), response.getHeaders().get("Location")
+    );
+  }
 
 }

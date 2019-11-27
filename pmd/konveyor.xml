@@ -85,6 +85,8 @@ public interface Matrix<KeyType extends Serializable, ValueType extends Serializ
    matches(@Image,'[A-Z][a-z0-9]*Factory$') or
    matches(@Image,'[A-Z][a-z0-9]*Constants$') or
    matches(@Image,'[A-Z][a-z0-9]*Exception$') or
+   matches(@Image,'[A-Z][a-z0-9]*Util$') or
+   matches(@Image,'[A-Z][a-z0-9]*TestBase$') or
    matches(@Image,'[A-Z][a-z0-9]*Stubs$')
 ) and not(
    ../Annotation/MarkerAnnotation/Name/@Image = 'InterfaceClass' or
@@ -170,6 +172,32 @@ MethodDeclarator[not(matches(@Image,'^[a-z][a-zA-Z0-9]*$'))]
    (@Image = 'id' and ../../local-name() = 'FieldDeclaration')
 )]
 
+]]>
+         </value>
+      </property>
+   </properties>
+</rule>
+<rule name="TestBaseRules"
+      language="java"
+      message="TestBase should contain fields for the SUT, collaborators and testdata, and a setUp method with correct annotations"
+      class="net.sourceforge.pmd.lang.rule.XPathRule">
+   <description>
+
+   </description>
+   <priority>3</priority>
+   <properties>
+      <property name="version" value="2.0"/>
+      <property name="xpath">
+         <value>
+<![CDATA[
+//ClassOrInterfaceDeclaration[ends-with(@Image,'TestBase')]/(
+    .[not(count(//FieldDeclaration[..//MarkerAnnotation[@AnnotationName='InjectMocks']])=1)]|
+    .//FieldDeclaration[not(
+        .//ClassOrInterfaceType/@Image = concat(upper-case(substring(.//VariableDeclaratorId/@Image,1,1)),substring(.//VariableDeclaratorId/@Image,2))
+    )]|
+    .//FieldDeclaration[not(@PackagePrivate=true() and @Static=false())]|
+    .//MethodDeclaration[not(@PackagePrivate=true() and MethodDeclarator/@Image='setUp' and ..//MarkerAnnotation/@AnnotationName='BeforeEach')]
+)
 ]]>
          </value>
       </property>

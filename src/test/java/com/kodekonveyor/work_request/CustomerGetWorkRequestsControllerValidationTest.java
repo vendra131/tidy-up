@@ -19,13 +19,17 @@ import com.kodekonveyor.exception.ThrowableTester;
 @TestedBehaviour("input validation")
 @TestedService("CustomerGetWorkRequestsController")
 
-public class CustomerGetWorkRequestsControllerValidationTest extends CustomerWorkRequestControllerTestBase {
+public class CustomerGetWorkRequestsControllerValidationTest
+    extends CustomerWorkRequestControllerTestBase {
 
-	@Test
-	@DisplayName("When owner ID is null, the message is 'This field cannot be blank'")
-	public void testWorkRequestDetails2() {
-		ThrowableTester.assertThrows(() -> customerGetWorkRequestsController.call(null))
-				.assertMessageIs(workRequestTestData.NULL_OWNERID);
-	}
+  @Test
+  @DisplayName(
+    "When owner ID is null, the message is 'This field cannot be blank'"
+  )
+  public void testWorkRequestDetails2() {
+    ThrowableTester
+        .assertThrows(() -> customerGetWorkRequestsController.call(null))
+        .assertMessageIs(workRequestTestData.NULL_OWNERID);
+  }
 
 }

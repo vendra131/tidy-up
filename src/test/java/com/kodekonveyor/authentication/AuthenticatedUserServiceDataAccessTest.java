@@ -27,52 +27,63 @@ import com.kodekonveyor.webapp.NotLoggedInException;
 @TestedService("AuthenticatedUserService")
 public class AuthenticatedUserServiceDataAccessTest {
 
-	@InjectMocks
-	private AuthenticatedUserService authenticatedUserService;
-	@Mock
-	private UserEntityRepository userEntityRepository;
+  @InjectMocks
+  private AuthenticatedUserService authenticatedUserService;
+  @Mock
+  private UserEntityRepository userEntityRepository;
 
-	private UserTestData userTestData;
+  private UserTestData userTestData;
 
-	@BeforeEach
-	public void setUp() {
-		userTestData = new UserTestData();
-		UserEntityRepositoryStubs.behaviour(userEntityRepository, userTestData);
-	}
+  @BeforeEach
+  public void setUp() {
+    userTestData = new UserTestData();
+    UserEntityRepositoryStubs.behaviour(userEntityRepository, userTestData);
+  }
 
-	@Test
-	@DisplayName("Gets the user by the authenticated name")
-	public void test() {
-		AuthenticationStubs.authenticated(userTestData);
-		assertEquals(userTestData.USER, authenticatedUserService.call());
-	}
+  @Test
+  @DisplayName("Gets the user by the authenticated name")
+  public void test() {
+    AuthenticationStubs.authenticated(userTestData);
+    assertEquals(userTestData.USER, authenticatedUserService.call());
+  }
 
-	@Test
-	@DisplayName("When authentication object is null, we throw NotLoggedInException")
-	public void test2() {
-		AuthenticationStubs.nullAuthentication();
-		ThrowableTester.assertThrows(() -> authenticatedUserService.call()).assertException(NotLoggedInException.class);
-	}
+  @Test
+  @DisplayName(
+    "When authentication object is null, we throw NotLoggedInException"
+  )
+  public void test2() {
+    AuthenticationStubs.nullAuthentication();
+    ThrowableTester.assertThrows(() -> authenticatedUserService.call())
+        .assertException(NotLoggedInException.class);
+  }
 
-	@Test
-	@DisplayName("When authentication object is null, the message is 'No Authentication'")
-	public void test3() {
-		AuthenticationStubs.nullAuthentication();
-		ThrowableTester.assertThrows(() -> authenticatedUserService.call())
-				.assertMessageIs(userTestData.NO_AUTHENTICATION);
-	}
+  @Test
+  @DisplayName(
+    "When authentication object is null, the message is 'No Authentication'"
+  )
+  public void test3() {
+    AuthenticationStubs.nullAuthentication();
+    ThrowableTester.assertThrows(() -> authenticatedUserService.call())
+        .assertMessageIs(userTestData.NO_AUTHENTICATION);
+  }
 
-	@Test
-	@DisplayName("When returned credential is null, we throw NotLoggedInException")
-	public void test4() {
-		AuthenticationStubs.nullCredential();
-		ThrowableTester.assertThrows(() -> authenticatedUserService.call()).assertException(NotLoggedInException.class);
-	}
+  @Test
+  @DisplayName(
+    "When returned credential is null, we throw NotLoggedInException"
+  )
+  public void test4() {
+    AuthenticationStubs.nullCredential();
+    ThrowableTester.assertThrows(() -> authenticatedUserService.call())
+        .assertException(NotLoggedInException.class);
+  }
 
-	@Test
-	@DisplayName("When returned credential is null, the message is 'No Credential'")
-	public void test5() {
-		AuthenticationStubs.nullCredential();
-		ThrowableTester.assertThrows(() -> authenticatedUserService.call()).assertMessageIs(userTestData.NO_CREDENTIAL);
-	}
+  @Test
+  @DisplayName(
+    "When returned credential is null, the message is 'No Credential'"
+  )
+  public void test5() {
+    AuthenticationStubs.nullCredential();
+    ThrowableTester.assertThrows(() -> authenticatedUserService.call())
+        .assertMessageIs(userTestData.NO_CREDENTIAL);
+  }
 }
