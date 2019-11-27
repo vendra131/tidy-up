@@ -6,9 +6,10 @@ import lombok.Data;
 
 @Data
 public class CreateWorkRequestDTO {
-	private Long customerId;
-	private AddressDTO address;
-	private String workType;
-	private String description;
+
+  private Long customerId;
+  private AddressDTO address;
+  private String workType;
+  private String description;
 
 }

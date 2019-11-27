@@ -11,12 +11,13 @@ import lombok.Data;
 @Entity
 @Data
 public class UserEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	@Column(name = "username")
-	private String login;
-	@Column(name = "auth0id")
-	private String auth0id;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
+  @Column(name = "username")
+  private String login;
+  @Column(name = "auth0id")
+  private String auth0id;
 
 }

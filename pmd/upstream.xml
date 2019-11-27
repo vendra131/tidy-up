@@ -22,6 +22,8 @@
 		<exclude name="ClassNamingConventions" />
 		<exclude name="FieldNamingConventions" />
 		<exclude name="GenericsNaming" />
+		<exclude name="DefaultPackage" />
+		<exclude name="CommentDefaultAccessModifier" />
 		<exclude name="OnlyOneReturn" />
 	</rule>
 	<rule ref="category/java/design.xml">
