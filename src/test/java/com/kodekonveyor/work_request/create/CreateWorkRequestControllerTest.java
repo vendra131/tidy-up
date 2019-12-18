@@ -8,8 +8,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
@@ -17,44 +15,49 @@ import org.mockito.quality.Strictness;
 
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
-import com.kodekonveyor.authentication.AuthenticatedUserService;
-import com.kodekonveyor.authentication.AuthenticatedUserStubs;
-import com.kodekonveyor.authentication.UserTestData;
-import com.kodekonveyor.work_request.AddressTestData;
-import com.kodekonveyor.work_request.WorkRequestRepository;
-import com.kodekonveyor.work_request.WorkRequestTestData;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 @RunWith(MockitoJUnitRunner.class)
 @TestedBehaviour("Data access")
 @TestedService("CreateWorkRequestController")
-public class CreateWorkRequestControllerTest {
+public class CreateWorkRequestControllerTest
+    extends CreateWorkRequestControllerTestBase {
 
-  @InjectMocks
-  private CreateWorkRequestController createWorkRequestController;
-  @Mock
-  private WorkRequestRepository workRequestRepository;
-  @Mock
-  private AuthenticatedUserService authenticatedUserService;
-  private WorkRequestTestData workRequestTestData;
-
+  @Override
   @BeforeEach
-  public void setUp() {
-    final UserTestData userTestData = new UserTestData();
-    final AddressTestData addressTestData = new AddressTestData();
-    workRequestTestData =
-        new WorkRequestTestData(userTestData, addressTestData);
-    AuthenticatedUserStubs.behaviour(authenticatedUserService, userTestData);
-    createWorkRequestController.call(workRequestTestData.CREATE_WORK_REQUEST);
-    verify(workRequestRepository).save(workRequestTestData.WORK_REQUEST_ENTITY);
+  void setUp() {
+    super.setUp();
+    createWorkRequestController
+        .call(createWorkRequestTestData.CREATE_WORK_REQUEST);
+  }
+
+  @Test
+  @DisplayName("The address in the entity is saved correctly")
+  public void test4() {
+    assertEquals(
+        workRequestTestData.addressTestData.ADDRESS_ENTITY,
+        workRequestTestData.WORK_REQUEST_ENTITY.getAddress()
+    );
   }
 
   @Test
   @DisplayName(
-    "Controller files WorkType of WorkRequestEntity based on request"
+    "The user in the entity is saved correctly"
   )
-  public void test() {
+  public void test3() {
+    assertEquals(
+        workRequestTestData.userTestData.USER,
+        workRequestTestData.WORK_REQUEST_ENTITY.getCustomer()
+    );
+
+  }
+
+  @Test
+  @DisplayName(
+    "The work type in the entity is saved correctly"
+  )
+  public void test6() {
     assertEquals(
         workRequestTestData.WORK_TYPE,
         workRequestTestData.WORK_REQUEST_ENTITY.getWorkType()
@@ -62,19 +65,43 @@ public class CreateWorkRequestControllerTest {
   }
 
   @Test
-  @DisplayName("Controller files Id of WorkRequestEntity based on request")
-  public void test1() {
+  @DisplayName(
+    "The city in the entity is saved correctly"
+  )
+  public void test7() {
     assertEquals(
-        workRequestTestData.WORK_REQUEST_ID,
-        workRequestTestData.WORK_REQUEST_ENTITY.getId()
+        workRequestTestData.addressTestData.ADDRESS_DTO.getCity(),
+        workRequestTestData.WORK_REQUEST_ENTITY.getAddress().getCity()
     );
   }
 
   @Test
   @DisplayName(
-    "Controller files Description of WorkRequestEntity based on request"
+    "The country in the entity is saved correctly"
   )
-  public void test2() {
+  public void test8() {
+    assertEquals(
+        workRequestTestData.addressTestData.ADDRESS_DTO.getCountry(),
+        workRequestTestData.WORK_REQUEST_ENTITY.getAddress().getCountry()
+    );
+  }
+
+  @Test
+  @DisplayName(
+    "The address string in the entity is saved correctly"
+  )
+  public void test9() {
+    assertEquals(
+        workRequestTestData.addressTestData.ADDRESS_DTO.getAddress(),
+        workRequestTestData.WORK_REQUEST_ENTITY.getAddress().getAddress()
+    );
+  }
+
+  @Test
+  @DisplayName(
+    "The description in the entity is saved correctly"
+  )
+  public void test10() {
     assertEquals(
         workRequestTestData.DESCRIPTION,
         workRequestTestData.WORK_REQUEST_ENTITY.getDescription()
@@ -82,23 +109,10 @@ public class CreateWorkRequestControllerTest {
   }
 
   @Test
-  @DisplayName(
-    "Controller files customer of WorkRequestEntity based on request"
-  )
-  public void test3() {
-    assertEquals(
-        workRequestTestData.userTestData.USER,
-        workRequestTestData.WORK_REQUEST_ENTITY.getCustomer()
-    );
-  }
+  @DisplayName("Work request entity is saved")
+  public void test5() {
 
-  @Test
-  @DisplayName("Controller files address of WorkRequestEntity based on request")
-  public void test4() {
-    assertEquals(
-        workRequestTestData.addressTestData.ADDRESS_ENTITY,
-        workRequestTestData.WORK_REQUEST_ENTITY.getAddress()
-    );
+    verify(workRequestRepository).save(workRequestTestData.WORK_REQUEST_ENTITY);
   }
 
 }

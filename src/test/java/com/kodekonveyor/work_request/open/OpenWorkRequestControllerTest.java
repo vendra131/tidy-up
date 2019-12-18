@@ -1,6 +1,6 @@
 package com.kodekonveyor.work_request.open;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,11 +19,12 @@ import com.kodekonveyor.annotations.TestedService;
 @RunWith(MockitoJUnitRunner.class)
 @TestedBehaviour("Data access")
 @TestedService("OpenWorkRequestController")
+
 public class OpenWorkRequestControllerTest
     extends OpenWorkRequestControllerTestBase {
 
   @Test
-  @DisplayName("Controller returns right DTO based on requestId")
+  @DisplayName("Work request details are returned based on work requestId")
   public void test() {
     assertEquals(
         workRequestTestData.WORK_REQUEST_DTO,
@@ -33,4 +34,39 @@ public class OpenWorkRequestControllerTest
 
   }
 
+  @Test
+  @DisplayName("The work request id is returned")
+  public void testWorkRequestgetId() {
+    assertEquals(
+        workRequestTestData.WORK_REQUEST_ID,
+        workRequestTestData.WORK_REQUEST_ENTITY.getId()
+    );
+  }
+
+  @Test
+  @DisplayName("The work type is returned")
+  public void testWorkRequestgetWorkType() {
+    assertEquals(
+        workRequestTestData.WORK_TYPE,
+        workRequestTestData.WORK_REQUEST_ENTITY.getWorkType()
+    );
+  }
+
+  @Test
+  @DisplayName("The address is returned ")
+  public void testWorkRequestgetAddress() {
+    assertEquals(
+        workRequestTestData.addressTestData.ADDRESS_ENTITY,
+        workRequestTestData.WORK_REQUEST_ENTITY.getAddress()
+    );
+  }
+
+  @Test
+  @DisplayName("The description is returned")
+  public void testWorkRequestgetDescription() {
+    assertEquals(
+        workRequestTestData.DESCRIPTION,
+        workRequestTestData.WORK_REQUEST_ENTITY.getDescription()
+    );
+  }
 }

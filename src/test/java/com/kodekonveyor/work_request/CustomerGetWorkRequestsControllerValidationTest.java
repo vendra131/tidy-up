@@ -20,16 +20,42 @@ import com.kodekonveyor.exception.ThrowableTester;
 @TestedService("CustomerGetWorkRequestsController")
 
 public class CustomerGetWorkRequestsControllerValidationTest
-    extends CustomerWorkRequestControllerTestBase {
+    extends CustomerWorkRequestsControllerTestBase {
 
   @Test
   @DisplayName(
-    "When owner ID is null, the message is 'This field cannot be blank'"
+    "When owner ID is null, the message is 'No OwnerId'"
   )
-  public void testWorkRequestDetails2() {
+
+  public void testCustomerGetWorkRequestsControllerNullOwnerId() {
     ThrowableTester
         .assertThrows(() -> customerGetWorkRequestsController.call(null))
-        .assertMessageIs(workRequestTestData.NULL_OWNERID);
+        .assertMessageIs(getWorkRequestTestData.NULL_OWNERID);
+  }
+
+  @Test
+  @DisplayName(
+    "Owner Id can contain only digits, alphabet and special characters not allowed"
+  )
+  public void testCustomerGetWorkRequestsControllerCharacterCheck2() {
+    ThrowableTester
+        .assertThrows(
+            () -> customerGetWorkRequestsController
+                .call(getWorkRequestTestData.ALPHACHAR_OWNERID_ID)
+        )
+        .assertMessageIs(getWorkRequestTestData.ALPHACHAR_OWNERID);
+  }
+
+  @Test
+  @DisplayName("When owner Id is incorrect, the message is 'Invalid OwnerId'")
+  public void testCustomerGetWorkRequestsControllerInvalidOwnerId() {
+    ThrowableTester
+        .assertThrows(
+            () -> customerGetWorkRequestsController
+                .call(getWorkRequestTestData.INVALID_OWNERID_ID)
+        )
+        .assertMessageIs(getWorkRequestTestData.INVALID_OWNERID);
+
   }
 
 }

@@ -1,9 +1,11 @@
-package com.kodekonveyor.work_request.open;
+package com.kodekonveyor.work_request.create;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import com.kodekonveyor.authentication.AuthenticatedUserService;
+import com.kodekonveyor.authentication.AuthenticatedUserStubs;
 import com.kodekonveyor.authentication.UserEntityRepository;
 import com.kodekonveyor.authentication.UserEntityRepositoryStubs;
 import com.kodekonveyor.authentication.UserTestData;
@@ -13,10 +15,10 @@ import com.kodekonveyor.work_request.WorkRequestRepository;
 import com.kodekonveyor.work_request.WorkRequestRepositoryStubs;
 import com.kodekonveyor.work_request.WorkRequestTestData;
 
-public class OpenWorkRequestControllerTestBase {
+public class CreateWorkRequestControllerTestBase {
 
   @InjectMocks
-  OpenWorkRequestController openWorkRequestController;
+  CreateWorkRequestController createWorkRequestController;
 
   @Mock
   WorkRequestRepository workRequestRepository;
@@ -24,11 +26,13 @@ public class OpenWorkRequestControllerTestBase {
   UserEntityRepository userEntityRepository;
   @Mock
   AddressEntity addressEntity;
+  @Mock
+  AuthenticatedUserService authenticatedUserService;
 
   UserTestData userTestData;
   WorkRequestTestData workRequestTestData;
   AddressTestData addressTestData;
-  OpenWorkRequestControllerTestData openWorkRequestControllerTestData;
+  CreateWorkRequestTestData createWorkRequestTestData;
 
   @BeforeEach
   void setUp() {
@@ -37,12 +41,14 @@ public class OpenWorkRequestControllerTestBase {
     addressTestData = new AddressTestData();
     workRequestTestData =
         new WorkRequestTestData(userTestData, addressTestData);
-    openWorkRequestControllerTestData =
-        new OpenWorkRequestControllerTestData();
+    createWorkRequestTestData =
+        new CreateWorkRequestTestData(workRequestTestData, addressTestData);
 
     WorkRequestRepositoryStubs
         .behaviour(workRequestRepository, workRequestTestData);
     UserEntityRepositoryStubs.behaviour(userEntityRepository, userTestData);
+
+    AuthenticatedUserStubs.behaviour(authenticatedUserService, userTestData);
   }
 
 }

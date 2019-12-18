@@ -21,7 +21,7 @@ import com.kodekonveyor.annotations.TestedService;
 @TestedService("CustomerGetWorkRequestsController")
 
 public class CustomerGetWorkRequestsControllerTest
-    extends CustomerWorkRequestControllerTestBase {
+    extends CustomerWorkRequestsControllerTestBase {
 
   @Test
   @DisplayName("We return the right work request list for the owner ID")
@@ -30,7 +30,42 @@ public class CustomerGetWorkRequestsControllerTest
         workRequestTestData.WORK_REQUEST_LIST_DTO,
         customerGetWorkRequestsController.call(workRequestTestData.OWNER_ID)
     );
+  }
 
+  @Test
+  @DisplayName("We return the right work request Id")
+  public void testWorkRequestgetId() {
+    assertEquals(
+        workRequestTestData.WORK_REQUEST_ID,
+        workRequestTestData.WORK_REQUEST_ENTITY.getId()
+    );
+  }
+
+  @Test
+  @DisplayName("We return the right work type")
+  public void testWorkRequestgetWorkType() {
+    assertEquals(
+        workRequestTestData.WORK_TYPE,
+        workRequestTestData.WORK_REQUEST_ENTITY.getWorkType()
+    );
+  }
+
+  @Test
+  @DisplayName("We return the right address")
+  public void testWorkRequestgetAddress() {
+    assertEquals(
+        workRequestTestData.addressTestData.ADDRESS_ENTITY,
+        workRequestTestData.WORK_REQUEST_ENTITY.getAddress()
+    );
+  }
+
+  @Test
+  @DisplayName("We return the right description")
+  public void testWorkRequestgetDescription() {
+    assertEquals(
+        workRequestTestData.DESCRIPTION,
+        workRequestTestData.WORK_REQUEST_ENTITY.getDescription()
+    );
   }
 
 }
