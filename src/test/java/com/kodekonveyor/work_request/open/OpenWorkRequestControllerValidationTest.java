@@ -12,6 +12,7 @@ import org.mockito.quality.Strictness;
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
 import com.kodekonveyor.exception.ThrowableTester;
+import com.kodekonveyor.work_request.WorkRequestEntityTestData;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -30,10 +31,10 @@ class OpenWorkRequestControllerValidationTest
 
     ThrowableTester.assertThrows(
         () -> openWorkRequestController
-            .call(openWorkRequestControllerTestData.NON_POSITIVE_WORK_REQUEST_ID)
+            .call(WorkRequestEntityTestData.NON_POSITIVE_WORK_REQUEST_ID)
     )
         .assertMessageIs(
-            openWorkRequestControllerTestData.NON_POSITIVE_WORK_REQUEST_ID_EXCEPTION
+            OpenWorkRequestControllerTestData.NON_POSITIVE_WORK_REQUEST_ID_EXCEPTION
         );
 
   }
@@ -45,10 +46,10 @@ class OpenWorkRequestControllerValidationTest
   public void testWorkRequestInvalidId() {
     ThrowableTester.assertThrows(
         () -> openWorkRequestController
-            .call(openWorkRequestControllerTestData.INVALID_WORK_REQUEST_ID)
+            .call(WorkRequestEntityTestData.INVALID_WORK_REQUEST_ID)
     )
         .assertMessageIs(
-            openWorkRequestControllerTestData.INVALID_WORK_REQUEST_ID_EXCEPTION
+            OpenWorkRequestControllerTestData.INVALID_WORK_REQUEST_ID_EXCEPTION
         );
 
   }

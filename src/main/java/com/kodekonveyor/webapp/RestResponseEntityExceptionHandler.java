@@ -24,7 +24,7 @@ public class RestResponseEntityExceptionHandler
   @ExceptionHandler({
       NotLoggedInException.class, ValidationException.class
   })
-  protected ResponseEntity<Object> handleNotLoggedInException(
+  public ResponseEntity<Object> handleNotLoggedInException(
       final NotLoggedInException exception,
       final WebRequest request
   ) {

@@ -13,6 +13,9 @@ import org.mockito.quality.Strictness;
 
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
+import com.kodekonveyor.work_request.AddressEntityTestData;
+import com.kodekonveyor.work_request.WorkRequestDTOTestData;
+import com.kodekonveyor.work_request.WorkRequestEntityTestData;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -27,9 +30,9 @@ public class OpenWorkRequestControllerTest
   @DisplayName("Work request details are returned based on work requestId")
   public void test() {
     assertEquals(
-        workRequestTestData.WORK_REQUEST_DTO,
+        WorkRequestDTOTestData.get(),
         openWorkRequestController
-            .call(workRequestTestData.WORK_REQUEST_ID)
+            .call(WorkRequestEntityTestData.WORK_REQUEST_ID)
     );
 
   }
@@ -38,8 +41,8 @@ public class OpenWorkRequestControllerTest
   @DisplayName("The work request id is returned")
   public void testWorkRequestgetId() {
     assertEquals(
-        workRequestTestData.WORK_REQUEST_ID,
-        workRequestTestData.WORK_REQUEST_ENTITY.getId()
+        WorkRequestEntityTestData.WORK_REQUEST_ID,
+        WorkRequestEntityTestData.get().getId()
     );
   }
 
@@ -47,8 +50,8 @@ public class OpenWorkRequestControllerTest
   @DisplayName("The work type is returned")
   public void testWorkRequestgetWorkType() {
     assertEquals(
-        workRequestTestData.WORK_TYPE,
-        workRequestTestData.WORK_REQUEST_ENTITY.getWorkType()
+        WorkRequestEntityTestData.WORK_TYPE,
+        WorkRequestEntityTestData.get().getWorkType()
     );
   }
 
@@ -56,8 +59,8 @@ public class OpenWorkRequestControllerTest
   @DisplayName("The address is returned ")
   public void testWorkRequestgetAddress() {
     assertEquals(
-        workRequestTestData.addressTestData.ADDRESS_ENTITY,
-        workRequestTestData.WORK_REQUEST_ENTITY.getAddress()
+        AddressEntityTestData.get(),
+        WorkRequestEntityTestData.get().getAddress()
     );
   }
 
@@ -65,8 +68,8 @@ public class OpenWorkRequestControllerTest
   @DisplayName("The description is returned")
   public void testWorkRequestgetDescription() {
     assertEquals(
-        workRequestTestData.DESCRIPTION,
-        workRequestTestData.WORK_REQUEST_ENTITY.getDescription()
+        WorkRequestEntityTestData.DESCRIPTION,
+        WorkRequestEntityTestData.get().getDescription()
     );
   }
 }

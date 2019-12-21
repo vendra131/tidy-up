@@ -28,9 +28,11 @@ public class CreateWorkRequestControllerValidation2Test
 
     ThrowableTester.assertThrows(
         () -> createWorkRequestController
-            .call(createWorkRequestTestData.CREATE_WORK_REQUEST_COUNTRY_LENGTH)
+            .call(CreateWorkRequestDTOTestData.getCountryInvalidLength())
     )
-        .assertMessageIs(addressTestData.COUNTRY_LENGTH_ERROR_MESSAGE);
+        .assertMessageIs(
+            WorkRequestValidationUtilTestData.COUNTRY_LENGTH_ERROR_MESSAGE
+        );
 
   }
 
@@ -40,10 +42,12 @@ public class CreateWorkRequestControllerValidation2Test
 
     ThrowableTester.assertThrows(
         () -> createWorkRequestController.call(
-            createWorkRequestTestData.CREATE_WORK_REQUEST_COUNTRY_ALPHABET
+            CreateWorkRequestDTOTestData.getCountryInvalidCharacter()
         )
     )
-        .assertMessageIs(addressTestData.COUNTRY_CODE_ALPHABET);
+        .assertMessageIs(
+            WorkRequestValidationUtilTestData.COUNTRY_CODE_NON_ALPHABETIC_CHARACTER_ERROR_MESSAGE
+        );
 
   }
 
@@ -55,9 +59,11 @@ public class CreateWorkRequestControllerValidation2Test
 
     ThrowableTester.assertThrows(
         () -> createWorkRequestController
-            .call(createWorkRequestTestData.CREATE_WORK_REQUEST_ADDRESS_LENGTH)
+            .call(CreateWorkRequestDTOTestData.getAddressLongerThanMaxLength())
     )
-        .assertMessageIs(addressTestData.ADDRESS_LENGTHEXCEED);
+        .assertMessageIs(
+            WorkRequestValidationUtilTestData.ADDRESS_LENGTH_EXCEEDED
+        );
 
   }
 
@@ -68,20 +74,22 @@ public class CreateWorkRequestControllerValidation2Test
     ThrowableTester.assertThrows(
         () -> createWorkRequestController
             .call(
-                createWorkRequestTestData.CREATE_WORK_REQUEST_ZERO_ADDRESS_LENGTH
+                CreateWorkRequestDTOTestData.getAddressZeroLength()
             )
     )
-        .assertMessageIs(addressTestData.ADDRESS_ZERO_LENGTH);
+        .assertMessageIs(
+            WorkRequestValidationUtilTestData.ADDRESS_CANNOT_BE_BLANK
+        );
 
   }
 
   @Test
   @DisplayName("when Addrss has 120 characters, we do not throw exception")
-  public void testCreateWorkRequestMaxAddressLength1() { //NOPMD
+  public void testCreateWorkRequestMaxAddressLength1() {//NOPMD
 
     createWorkRequestController
         .call(
-            createWorkRequestTestData.CREATE_WORK_REQUEST_MAX_ADDRESS_LENGTH
+            CreateWorkRequestDTOTestData.getAddressMaxLength()
         );
 
   }
@@ -93,11 +101,11 @@ public class CreateWorkRequestControllerValidation2Test
         .assertThrows(
             () -> createWorkRequestController
                 .call(
-                    createWorkRequestTestData.CREATE_WORK_REQUEST_NEGATIVE_CUSTOMERID
+                    CreateWorkRequestDTOTestData.getCustomerIdNegative()
                 )
         )
         .assertMessageIs(
-            createWorkRequestTestData.NEGATIVE_CUSTOMERID_ERROR_MESSAGE
+            WorkRequestValidationUtilTestData.NEGATIVE_CUSTOMERID_ERROR_MESSAGE
         );
   }
 
@@ -108,11 +116,11 @@ public class CreateWorkRequestControllerValidation2Test
         .assertThrows(
             () -> createWorkRequestController
                 .call(
-                    createWorkRequestTestData.CREATE_WORK_REQUEST_ZERO_CUSTOMERID
+                    CreateWorkRequestDTOTestData.getCustomerIdZero()
                 )
         )
         .assertMessageIs(
-            createWorkRequestTestData.ZERO_CUSTOMERID_ERROR_MESSAGE
+            WorkRequestValidationUtilTestData.ZERO_CUSTOMERID_ERROR_MESSAGE
         );
   }
 
@@ -124,11 +132,11 @@ public class CreateWorkRequestControllerValidation2Test
         .assertThrows(
             () -> createWorkRequestController
                 .call(
-                    createWorkRequestTestData.CREATE_WORK_REQUEST_DIGIT_SPECIAL_CHARACTER_WORKTYPE
+                    CreateWorkRequestDTOTestData.getWorkTypeInvalidCharacter()
                 )
         )
         .assertMessageIs(
-            createWorkRequestTestData.DIGIT_SPECIAL_CHARACTER_WORKTYPE_ERROR
+            WorkRequestValidationUtilTestData.DIGIT_SPECIAL_CHARACTER_WORKTYPE_ERROR
         );
 
   }

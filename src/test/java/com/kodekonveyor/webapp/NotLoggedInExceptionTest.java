@@ -2,7 +2,6 @@ package com.kodekonveyor.webapp;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,15 +19,7 @@ import com.kodekonveyor.annotations.TestedService;
 @RunWith(MockitoJUnitRunner.class)
 @TestedBehaviour("Have a message")
 @TestedService("NotLoggedInException")
-public class NotLoggedInExceptionTest {
-
-  private static final String MESSAGE = "message";
-  private NotLoggedInException exception;
-
-  @BeforeEach
-  public void setUp() {
-    exception = new NotLoggedInException(MESSAGE);
-  }
+public class NotLoggedInExceptionTest extends NotLoggedInExceptionTestBase {
 
   @DisplayName("the message is the exception message")
   @Test

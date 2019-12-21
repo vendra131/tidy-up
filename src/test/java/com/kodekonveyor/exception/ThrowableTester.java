@@ -14,7 +14,7 @@ import com.kodekonveyor.webapp.InterfaceClass;
 @Service
 @InterfaceClass
 @ExcludeFromCodeCoverage("temporarily")
-public class ThrowableTester {// NOPMD
+public class ThrowableTester {//NOPMD
 
   public Throwable thrown;
   private static ThrowableTester tester = new ThrowableTester();

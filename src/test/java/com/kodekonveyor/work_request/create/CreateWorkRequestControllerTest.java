@@ -15,6 +15,9 @@ import org.mockito.quality.Strictness;
 
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
+import com.kodekonveyor.authentication.UserEntityTestData;
+import com.kodekonveyor.work_request.AddressEntityTestData;
+import com.kodekonveyor.work_request.WorkRequestEntityTestData;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -29,15 +32,22 @@ public class CreateWorkRequestControllerTest
   void setUp() {
     super.setUp();
     createWorkRequestController
-        .call(createWorkRequestTestData.CREATE_WORK_REQUEST);
+        .call(CreateWorkRequestDTOTestData.get());
+  }
+
+  @Test
+  @DisplayName("Work request entity is saved")
+  public void test5() {
+
+    verify(workRequestRepository).save(WorkRequestEntityTestData.get());
   }
 
   @Test
   @DisplayName("The address in the entity is saved correctly")
   public void test4() {
     assertEquals(
-        workRequestTestData.addressTestData.ADDRESS_ENTITY,
-        workRequestTestData.WORK_REQUEST_ENTITY.getAddress()
+        AddressEntityTestData.get(),
+        WorkRequestEntityTestData.get().getAddress()
     );
   }
 
@@ -47,8 +57,8 @@ public class CreateWorkRequestControllerTest
   )
   public void test3() {
     assertEquals(
-        workRequestTestData.userTestData.USER,
-        workRequestTestData.WORK_REQUEST_ENTITY.getCustomer()
+        UserEntityTestData.get(),
+        WorkRequestEntityTestData.get().getCustomer()
     );
 
   }
@@ -59,8 +69,8 @@ public class CreateWorkRequestControllerTest
   )
   public void test6() {
     assertEquals(
-        workRequestTestData.WORK_TYPE,
-        workRequestTestData.WORK_REQUEST_ENTITY.getWorkType()
+        WorkRequestEntityTestData.WORK_TYPE,
+        WorkRequestEntityTestData.get().getWorkType()
     );
   }
 
@@ -70,8 +80,8 @@ public class CreateWorkRequestControllerTest
   )
   public void test7() {
     assertEquals(
-        workRequestTestData.addressTestData.ADDRESS_DTO.getCity(),
-        workRequestTestData.WORK_REQUEST_ENTITY.getAddress().getCity()
+        AddressEntityTestData.CITY,
+        WorkRequestEntityTestData.get().getAddress().getCity()
     );
   }
 
@@ -81,8 +91,8 @@ public class CreateWorkRequestControllerTest
   )
   public void test8() {
     assertEquals(
-        workRequestTestData.addressTestData.ADDRESS_DTO.getCountry(),
-        workRequestTestData.WORK_REQUEST_ENTITY.getAddress().getCountry()
+        AddressEntityTestData.COUNTRY,
+        WorkRequestEntityTestData.get().getAddress().getCountry()
     );
   }
 
@@ -92,8 +102,8 @@ public class CreateWorkRequestControllerTest
   )
   public void test9() {
     assertEquals(
-        workRequestTestData.addressTestData.ADDRESS_DTO.getAddress(),
-        workRequestTestData.WORK_REQUEST_ENTITY.getAddress().getAddress()
+        AddressEntityTestData.ADDRESS,
+        WorkRequestEntityTestData.get().getAddress().getAddress()
     );
   }
 
@@ -103,16 +113,9 @@ public class CreateWorkRequestControllerTest
   )
   public void test10() {
     assertEquals(
-        workRequestTestData.DESCRIPTION,
-        workRequestTestData.WORK_REQUEST_ENTITY.getDescription()
+        WorkRequestEntityTestData.DESCRIPTION,
+        WorkRequestEntityTestData.get().getDescription()
     );
-  }
-
-  @Test
-  @DisplayName("Work request entity is saved")
-  public void test5() {
-
-    verify(workRequestRepository).save(workRequestTestData.WORK_REQUEST_ENTITY);
   }
 
 }

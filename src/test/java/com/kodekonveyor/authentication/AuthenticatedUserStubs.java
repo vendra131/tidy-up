@@ -5,11 +5,10 @@ import static org.mockito.Mockito.doReturn;
 public class AuthenticatedUserStubs {
 
   public static void behaviour(
-      final AuthenticatedUserService authenticatedUserService,
-      final UserTestData userTestData
+      final AuthenticatedUserService authenticatedUserService
   ) {
 
-    doReturn(userTestData.USER).when(authenticatedUserService).call();
+    doReturn(UserEntityTestData.get()).when(authenticatedUserService).call();
 
   }
 }

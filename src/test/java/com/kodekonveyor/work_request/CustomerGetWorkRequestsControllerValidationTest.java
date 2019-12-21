@@ -30,7 +30,7 @@ public class CustomerGetWorkRequestsControllerValidationTest
   public void testCustomerGetWorkRequestsControllerNullOwnerId() {
     ThrowableTester
         .assertThrows(() -> customerGetWorkRequestsController.call(null))
-        .assertMessageIs(getWorkRequestTestData.NULL_OWNERID);
+        .assertMessageIs(CustomerGetWorkRequestsControllerTestData.NULL_OWNERID);
   }
 
   @Test
@@ -41,9 +41,13 @@ public class CustomerGetWorkRequestsControllerValidationTest
     ThrowableTester
         .assertThrows(
             () -> customerGetWorkRequestsController
-                .call(getWorkRequestTestData.ALPHACHAR_OWNERID_ID)
+                .call(
+                    CustomerGetWorkRequestsControllerTestData.ALPHACHAR_OWNERID_ID
+                )
         )
-        .assertMessageIs(getWorkRequestTestData.ALPHACHAR_OWNERID);
+        .assertMessageIs(
+            CustomerGetWorkRequestsControllerTestData.ALPHACHAR_OWNERID
+        );
   }
 
   @Test
@@ -52,9 +56,13 @@ public class CustomerGetWorkRequestsControllerValidationTest
     ThrowableTester
         .assertThrows(
             () -> customerGetWorkRequestsController
-                .call(getWorkRequestTestData.INVALID_OWNERID_ID)
+                .call(
+                    CustomerGetWorkRequestsControllerTestData.INVALID_OWNERID_ID
+                )
         )
-        .assertMessageIs(getWorkRequestTestData.INVALID_OWNERID);
+        .assertMessageIs(
+            CustomerGetWorkRequestsControllerTestData.INVALID_OWNERID
+        );
 
   }
 

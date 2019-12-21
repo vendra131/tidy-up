@@ -2184,7 +2184,6 @@ SecurityContextHolder.getContext().getAuthentication();</documentation>
       <element xsi:type="zenta:BasicObject" name="gives an offer" id="bb7cfd19-49b2-4702-b433-95e6e2fd81fb" ancestor="process_step"/>
       <element xsi:type="zenta:BasicObject" name="accepts an offer" id="339e2886-fa71-4d05-9b54-7a4715e2409d" ancestor="process_step"/>
       <element xsi:type="zenta:BasicObject" name="offer" id="73f66079-1ea3-4541-8e23-6ce69c3e7f27" ancestor="d3d4e39d-09a6-4a0f-a985-be922245d850"/>
-      <element xsi:type="zenta:BasicObject" name="AcceptOfferController" id="84bb9693-ccdf-4744-a085-5cf6a76b5f1d" ancestor="5491f72b-93ec-4ad5-b6a9-2653fe808a03"/>
     </folder>
     <folder name="0. Policies and objectives" id="a4a6ae0a-5317-4c44-b233-6a8316f4ace1">
       <folder name="1. Policies" id="27221d60-7acc-440f-b20c-35ebf495c3f2">
@@ -4110,6 +4109,7 @@ no other mechanism should write it</documentation>
       <element xsi:type="zenta:BasicRelationship" id="3f0cfa4c-b655-472c-806e-f4d5c4498e07" ancestor="71e55de0-67b7-4408-8371-fd66c6727ee4" source="9023a6d5-d8f7-4acd-ad58-9134c54bd1b5" target="aef5938c-fcfb-4ffc-a7ce-1deab65d02fd"/>
       <element xsi:type="zenta:BasicRelationship" id="57d821c4-dcda-4ac1-b660-5fc62e3b71d8" ancestor="a0ec85e2-1b1a-47a4-8c98-9f413bb7b995" source="339e2886-fa71-4d05-9b54-7a4715e2409d" target="3985cfdf-0c12-47d3-81c1-4919f8d33918"/>
       <element xsi:type="zenta:BasicRelationship" id="f208df39-811b-40a8-abd5-c272aa93041c" ancestor="a0ec85e2-1b1a-47a4-8c98-9f413bb7b995" source="339e2886-fa71-4d05-9b54-7a4715e2409d" target="5c423cbd-38cc-4fcf-886b-95701b744793"/>
+      <element xsi:type="zenta:BasicObject" name="AcceptOfferController" id="84bb9693-ccdf-4744-a085-5cf6a76b5f1d" ancestor="5491f72b-93ec-4ad5-b6a9-2653fe808a03"/>
     </folder>
   </folder>
   <property key="documentationMarkup" value="MediaWiki"/>

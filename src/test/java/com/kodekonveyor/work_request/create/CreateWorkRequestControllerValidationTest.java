@@ -28,9 +28,9 @@ public class CreateWorkRequestControllerValidationTest
 
     ThrowableTester.assertThrows(
         () -> createWorkRequestController
-            .call(createWorkRequestTestData.CREATE_WORK_REQUEST_NULL_WORKTYPE)
+            .call(CreateWorkRequestDTOTestData.getWorkTypeNull())
     )
-        .assertMessageIs(createWorkRequestTestData.NULL_WORKTYPE);
+        .assertMessageIs(WorkRequestValidationUtilTestData.NULL_WORKTYPE);
 
   }
 
@@ -40,10 +40,10 @@ public class CreateWorkRequestControllerValidationTest
 
     ThrowableTester.assertThrows(
         () -> createWorkRequestController.call(
-            createWorkRequestTestData.CREATE_WORK_REQUEST_NULL_DESCRIPTION
+            CreateWorkRequestDTOTestData.getDescriptionNull()
         )
     )
-        .assertMessageIs(createWorkRequestTestData.NULL_DESCRIPTION);
+        .assertMessageIs(WorkRequestValidationUtilTestData.NULL_DESCRIPTION);
 
   }
 
@@ -53,9 +53,9 @@ public class CreateWorkRequestControllerValidationTest
 
     ThrowableTester.assertThrows(
         () -> createWorkRequestController
-            .call(createWorkRequestTestData.CREATE_WORK_REQUEST_NULL_CUSTOMERID)
+            .call(CreateWorkRequestDTOTestData.getCustomerIdNull())
     )
-        .assertMessageIs(createWorkRequestTestData.NULL_CUSTOMERID);
+        .assertMessageIs(WorkRequestValidationUtilTestData.NULL_CUSTOMERID);
 
   }
 
@@ -67,10 +67,10 @@ public class CreateWorkRequestControllerValidationTest
         .assertThrows(
             () -> createWorkRequestController
                 .call(
-                    createWorkRequestTestData.CREATE_WORK_REQUEST_NULL_ADDRESS_STRING
+                    CreateWorkRequestDTOTestData.getAddressNull()
                 )
         )
-        .assertMessageIs(createWorkRequestTestData.NULL_ADDRESS_STRING);
+        .assertMessageIs(WorkRequestValidationUtilTestData.NULL_ADDRESS_STRING);
 
   }
 
@@ -81,9 +81,9 @@ public class CreateWorkRequestControllerValidationTest
     ThrowableTester
         .assertThrows(
             () -> createWorkRequestController
-                .call(createWorkRequestTestData.CREATE_WORK_REQUEST_NULL_CITY)
+                .call(CreateWorkRequestDTOTestData.getCityNull())
         )
-        .assertMessageIs(addressTestData.NULL_CITY);
+        .assertMessageIs(WorkRequestValidationUtilTestData.CITY_CANNOT_BE_EMPTY);
 
   }
 
@@ -93,9 +93,11 @@ public class CreateWorkRequestControllerValidationTest
 
     ThrowableTester.assertThrows(
         () -> createWorkRequestController
-            .call(createWorkRequestTestData.CREATE_WORK_REQUEST_NULL_COUNTRY)
+            .call(CreateWorkRequestDTOTestData.getCountryNull())
     )
-        .assertMessageIs(addressTestData.NULL_COUNTRY);
+        .assertMessageIs(
+            WorkRequestValidationUtilTestData.COUNTRY_CANNOT_BE_EMPTY
+        );
 
   }
 

@@ -26,8 +26,10 @@ public class AuthenticatedUserServiceCreateUserTest
   @Test
   @DisplayName("When there is no user for the credential, we create it")
   public void test6() {
-    AuthenticationStubs.badAuthenticated(userTestData);
-    assertEquals(userTestData.BAD_USER, authenticatedUserService.call());
+    AuthenticationStubs.badAuthenticated();
+    assertEquals(
+        UserEntityTestData.getIdForBadUser(), authenticatedUserService.call()
+    );
   }
 
 }

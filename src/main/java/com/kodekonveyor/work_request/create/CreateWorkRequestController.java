@@ -17,7 +17,7 @@ import com.kodekonveyor.work_request.WorkRequestRepository;
 import com.kodekonveyor.work_request.WorkTypeEnum;
 
 @Controller
-public class CreateWorkRequestController { //NOPMD Cyclomatic complexity
+public class CreateWorkRequestController {
 
   @Autowired
   public WorkRequestRepository workRequestRepository;
