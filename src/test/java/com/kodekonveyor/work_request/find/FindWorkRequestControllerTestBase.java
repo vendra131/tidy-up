@@ -16,6 +16,7 @@ public class FindWorkRequestControllerTestBase {
 
   @BeforeEach
   void setUp() {
+
     WorkRequestEntityRepositoryStubs.behaviour(
         workRequestRepository
     );

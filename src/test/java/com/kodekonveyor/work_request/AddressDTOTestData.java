@@ -9,6 +9,7 @@ public class AddressDTOTestData {
 
   public final static String COUNTRY_WITH_INVALID_CHARACTER = "3e";
   public final static String COUNTRY_OF_INVALID_LENGTH = "eefg";
+  public final static String CITY_WITH_INVALID_CHARACTER = "Mu3bai";
 
   public static AddressDTO get() {
     final AddressDTO dto = new AddressDTO();

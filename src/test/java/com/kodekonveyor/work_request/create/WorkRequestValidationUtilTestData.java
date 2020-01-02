@@ -32,5 +32,7 @@ public class WorkRequestValidationUtilTestData {
   public final static String NULL_DESCRIPTION = "Blank Description";
   public final static String NULL_ADDRESS = "Blank Address";
   public final static String NULL_CUSTOMERID = "Blank Customer Id";
+  public final static String CITY_CODE_NON_ALPHABETIC_CHARACTER_ERROR_MESSAGE =
+      "City can contain alphabetic characters/letters only";
 
 }
