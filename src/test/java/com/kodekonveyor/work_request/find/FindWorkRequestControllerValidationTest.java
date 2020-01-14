@@ -20,7 +20,7 @@ import com.kodekonveyor.work_request.create.WorkRequestValidationUtilTestData;
 @MockitoSettings(strictness = Strictness.LENIENT)
 @RunWith(MockitoJUnitRunner.class)
 @TestedBehaviour("input validation")
-@TestedService("findWorkRequestController")
+@TestedService("FindWorkRequestController")
 
 public class FindWorkRequestControllerValidationTest
     extends FindWorkRequestControllerTestBase {

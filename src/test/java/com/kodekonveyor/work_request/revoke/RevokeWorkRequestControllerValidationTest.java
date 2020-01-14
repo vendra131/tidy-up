@@ -22,7 +22,7 @@ import com.kodekonveyor.work_request.open.OpenWorkRequestControllerTestData;
 @MockitoSettings(strictness = Strictness.LENIENT)
 @RunWith(MockitoJUnitRunner.class)
 @TestedBehaviour("input validation")
-@TestedService("revokeWorkRequestController")
+@TestedService("RevokeWorkRequestController")
 public class RevokeWorkRequestControllerValidationTest
     extends RevokeWorkRequestControllerTestBase {
 
