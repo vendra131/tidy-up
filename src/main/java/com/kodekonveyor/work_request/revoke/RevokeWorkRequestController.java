@@ -3,20 +3,20 @@ package com.kodekonveyor.work_request.revoke;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.kodekonveyor.webapp.ValidationException;
 import com.kodekonveyor.work_request.WorkRequestConstants;
 import com.kodekonveyor.work_request.WorkRequestEntity;
 import com.kodekonveyor.work_request.WorkRequestRepository;
 
-@Controller
+@RestController
 public class RevokeWorkRequestController {
 
   @Autowired
-  private WorkRequestRepository workRequestRepository;
+  WorkRequestRepository workRequestRepository;
 
   @GetMapping("/workRequest/@workRequestId")
   public void call(@RequestParam final long workRequestId) {
@@ -27,7 +27,7 @@ public class RevokeWorkRequestController {
     workRequestRepository.delete(workRequestEntity);
   }
 
-  public void inputValidation(final long workRequestId) {
+  private void inputValidation(final long workRequestId) {
 
     final int workId = 0;
     if (workRequestId <= workId)

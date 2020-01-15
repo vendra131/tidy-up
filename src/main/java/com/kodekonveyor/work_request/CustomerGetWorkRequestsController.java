@@ -4,20 +4,22 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.kodekonveyor.authentication.UserEntity;
 import com.kodekonveyor.authentication.UserEntityRepository;
 import com.kodekonveyor.webapp.ValidationException;
 
-@Controller
+@RestController
 public class CustomerGetWorkRequestsController {
 
   @Autowired
-  public WorkRequestRepository workRequestRepository;
+  WorkRequestRepository workRequestRepository;
   @Autowired
-  public UserEntityRepository userEntityRepository;
+  UserEntityRepository userEntityRepository;
 
+  @GetMapping("/work-request/byOwner/{ownerId}")
   public WorkRequestListDTO call(final String ownerId) {
     inputValidation(ownerId);
 
@@ -54,7 +56,7 @@ public class CustomerGetWorkRequestsController {
     if (null == ownerId)
       throw new ValidationException(WorkRequestConstants.NULL_OWNERID);
 
-    if (!ownerId.matches("[0-9]+"))
+    if (!ownerId.matches(WorkRequestConstants.OWNER_ID_REGEX))
       throw new ValidationException(WorkRequestConstants.ALPHACHAR_OWNERID);
 
   }

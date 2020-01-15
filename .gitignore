@@ -1,4 +1,5 @@
 /target/
+.pmd
 inputs/
 issuesReport.json
 javabuild

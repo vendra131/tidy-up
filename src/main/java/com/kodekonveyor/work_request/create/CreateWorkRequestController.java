@@ -2,9 +2,9 @@
 package com.kodekonveyor.work_request.create;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.kodekonveyor.authentication.AuthenticatedUserService;
 import com.kodekonveyor.authentication.UserEntity;
@@ -16,17 +16,17 @@ import com.kodekonveyor.work_request.WorkRequestEntity;
 import com.kodekonveyor.work_request.WorkRequestRepository;
 import com.kodekonveyor.work_request.WorkTypeEnum;
 
-@Controller
+@RestController
 public class CreateWorkRequestController {
 
   @Autowired
-  public WorkRequestRepository workRequestRepository;
+  WorkRequestRepository workRequestRepository;
   @Autowired
-  public UserEntityRepository userEntityRepository;
+  UserEntityRepository userEntityRepository;
   @Autowired
-  public AuthenticatedUserService authenticatedUserService;
+  AuthenticatedUserService authenticatedUserService;
   @Autowired
-  public WorkTypeEnum workTypeEnum;
+  WorkTypeEnum workTypeEnum;
 
   @PostMapping("/work-request")
   public void

@@ -2,18 +2,16 @@ package com.kodekonveyor.authentication;
 
 import java.util.List;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 
 import com.kodekonveyor.webapp.NotLoggedInException;
 
+@Service
 public class AuthenticatedUserService {
-
-  final static private Pattern AUTH0_ID_EXTRACTION_PATTERN =
-      Pattern.compile("github\\|(.*?)@.*");
 
   @Autowired
   private UserEntityRepository userEntityRepository;
@@ -54,7 +52,8 @@ public class AuthenticatedUserService {
   }
 
   private String convertAuth0IdToId(final String auth0id) {
-    final Matcher matcher = AUTH0_ID_EXTRACTION_PATTERN.matcher(auth0id);
+    final Matcher matcher =
+        AuthenticationConstants.AUTH0_ID_EXTRACTION_PATTERN.matcher(auth0id);
     matcher.find();
     return matcher.group(1);
   }

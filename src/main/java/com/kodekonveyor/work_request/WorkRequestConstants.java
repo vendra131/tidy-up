@@ -46,4 +46,7 @@ public class WorkRequestConstants {
       "Invalid work request Id";
   public static String CITY_ALPHABET =
       "City can contain alphabetic characters/letters only";
+
+  public static final String OWNER_ID_REGEX = "[0-9]+";
+
 }

@@ -5,6 +5,8 @@ import com.kodekonveyor.work_request.WorkRequestConstants;
 
 public class WorkRequestValidationUtil {
 
+  private static final String WORK_TYPE_REGEX = "^[a-zA-Z]*$";
+
   public static void
       validateWorkRequest(final CreateWorkRequestDTO createWorkRequestDTO) {
     validateWorkType(createWorkRequestDTO);
@@ -22,7 +24,7 @@ public class WorkRequestValidationUtil {
     if (null == createWorkRequestDTO.getWorkType())
       throw new ValidationException(WorkRequestConstants.NULL_WORKTYPE);
 
-    if (!createWorkRequestDTO.getWorkType().matches("^[a-zA-Z]*$"))
+    if (!createWorkRequestDTO.getWorkType().matches(WORK_TYPE_REGEX))
       throw new ValidationException(
           WorkRequestConstants.DIGIT_SPECIAL_CHARACTER_WORKTYPE
       );

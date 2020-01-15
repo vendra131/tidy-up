@@ -5,13 +5,26 @@ import com.kodekonveyor.work_request.WorkRequestConstants;
 
 public class AddressValidationUtil {
 
+  private static final int ADDRESS_LENGTH_LIMIT = 120;
+
+  public static void
+      validateCityAndCountry(final CreateWorkRequestDTO createWorkRequestDTO) {
+
+    final String city = createWorkRequestDTO.getAddress().getCity();
+    CountryAndCityValidationUtil.validateCity(city);
+
+    final String country = createWorkRequestDTO.getAddress().getCountry();
+    CountryAndCityValidationUtil.validateCountry(country);
+
+  }
+
   public static void
       validateAddressDetails(final CreateWorkRequestDTO createWorkRequestDTO) {
 
     if (null == createWorkRequestDTO.getAddress().getAddress())
       throw new ValidationException(WorkRequestConstants.NULL_ADDRESS_STRING);
 
-    final int charLimit = 120;
+    final int charLimit = ADDRESS_LENGTH_LIMIT;
 
     if (createWorkRequestDTO.getAddress().getAddress().length() > charLimit)
       throw new ValidationException(WorkRequestConstants.ADDRESS_LENGTH);
@@ -19,24 +32,6 @@ public class AddressValidationUtil {
     final int charLimit1 = 0;
     if (createWorkRequestDTO.getAddress().getAddress().length() == charLimit1)
       throw new ValidationException(WorkRequestConstants.ZERO_ADDRESS_LENGTH);
-
-  }
-
-  public static void
-      validateCityAndCountry(final CreateWorkRequestDTO createWorkRequestDTO) {
-
-    if (null == createWorkRequestDTO.getAddress().getCity())
-      throw new ValidationException(WorkRequestConstants.NULL_CITY);
-
-    if (null == createWorkRequestDTO.getAddress().getCountry())
-      throw new ValidationException(WorkRequestConstants.NULL_COUNTRY);
-
-    final int length = 2;
-    if (createWorkRequestDTO.getAddress().getCountry().length() != length)
-      throw new ValidationException(WorkRequestConstants.COUNTRY_LENGTH);
-
-    if (!createWorkRequestDTO.getAddress().getCountry().matches("^[a-z]*$"))
-      throw new ValidationException(WorkRequestConstants.COUNTRY_ALPHABET);
 
   }
 }

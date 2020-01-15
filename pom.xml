@@ -85,6 +85,7 @@
 					<groupId>org.pitest</groupId>
 					<artifactId>pitest-maven</artifactId>
 					<version>1.4.9</version>
+						
 				        <dependencies>
 				          <dependency>
 				            <groupId>org.pitest</groupId>
@@ -94,6 +95,17 @@
 				        </dependencies>
 
 					<configuration>
+						<excludedClasses>
+						 <param>*DTO</param>
+						 <param>*Entity</param>
+						 <param>*Repository</param>
+						 <param>*Exception</param>
+						 <param>*Enum</param>
+						 <param>*Bean</param>
+						 <param>*.SpringConfig</param>
+						 <param>*.WebAppInitializer</param>
+						 <param>*.WebInitializer</param>
+						</excludedClasses>
 						<outputFormats>
 							<outputFormat>XML</outputFormat>
 							<outputFormat>HTML</outputFormat>
@@ -229,7 +241,7 @@
 					<ignoreAnnotations>true</ignoreAnnotations>
 					<includeTests>true</includeTests>
 					<rulesets>
-						<ruleset>pmd/main.xml</ruleset>
+						<ruleset>pmd.xml</ruleset>
 					</rulesets>
 				</configuration>
 			</plugin>
