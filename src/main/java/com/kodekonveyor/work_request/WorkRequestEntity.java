@@ -21,5 +21,6 @@ public class WorkRequestEntity {
 
   private AddressEntity address;
   private String description;
+  private WorkRequestStatusEnum status;
 
 }
