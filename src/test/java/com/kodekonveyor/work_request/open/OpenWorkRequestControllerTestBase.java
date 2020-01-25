@@ -4,32 +4,29 @@ import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import com.kodekonveyor.authentication.UserTestData;
-import com.kodekonveyor.work_request.AddressTestData;
+import com.kodekonveyor.authentication.UserEntityRepository;
+import com.kodekonveyor.authentication.UserEntityRepositoryStubs;
+import com.kodekonveyor.work_request.AddressEntity;
+import com.kodekonveyor.work_request.WorkRequestEntityRepositoryStubs;
 import com.kodekonveyor.work_request.WorkRequestRepository;
-import com.kodekonveyor.work_request.WorkRequestRepositoryStub;
-import com.kodekonveyor.work_request.WorkRequestTestData;
 
 public class OpenWorkRequestControllerTestBase {
 
   @InjectMocks
   OpenWorkRequestController openWorkRequestController;
+
   @Mock
   WorkRequestRepository workRequestRepository;
-  WorkRequestTestData workRequestTestData;
+  @Mock
+  UserEntityRepository userEntityRepository;
+  @Mock
+  AddressEntity addressEntity;
 
   @BeforeEach
   void setUp() {
-    final UserTestData userTestData = new UserTestData();
-    final AddressTestData addressTestData = new AddressTestData();
-    workRequestTestData = new WorkRequestTestData(
-        userTestData,
-        addressTestData
-    );
-    WorkRequestRepositoryStub.behaviour(
-        workRequestRepository,
-        workRequestTestData
-    );
+    WorkRequestEntityRepositoryStubs
+        .behaviour(workRequestRepository);
+    UserEntityRepositoryStubs.behaviour(userEntityRepository);
   }
 
 }

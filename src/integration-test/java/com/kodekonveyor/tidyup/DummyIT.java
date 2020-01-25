@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @DisplayName("dummy behaviour")
 @SpringBootTest
-public class DummyIntegrationTest {
+public class DummyIT {
 
   @Test
   public void test() {

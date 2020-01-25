@@ -63,7 +63,7 @@
         	@method=$excluded/excludedMethod/@name or 
         	@class=$excluded/excludedClass/@name or
         	ends-with(@class,'Enum') or
-        	ends-with(@method,'tUtil.&lt;init&gt;')
+        	ends-with(@method,'Util.&lt;init&gt;')
         	)]">
 ERROR: unit coverage miss at <xsl:value-of select="@method"/>
         </xsl:for-each>
