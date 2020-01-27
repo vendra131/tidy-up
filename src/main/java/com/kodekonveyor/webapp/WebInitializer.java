@@ -8,7 +8,7 @@ public class WebInitializer
     extends AbstractAnnotationConfigDispatcherServletInitializer {
 
   @Override
-  protected Class<?>[] getRootConfigClasses() {// NOPMD
+  protected Class<?>[] getRootConfigClasses() {//NOPMD
     return null;
   }
 

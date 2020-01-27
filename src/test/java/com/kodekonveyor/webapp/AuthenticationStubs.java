@@ -7,7 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.kodekonveyor.authentication.UserTestData;
+import com.kodekonveyor.authentication.UserEntityTestData;
 
 public class AuthenticationStubs {
 
@@ -20,21 +20,22 @@ public class AuthenticationStubs {
     SecurityContextHolder.setContext(securityContext);
   }
 
-  public static void authenticated(final UserTestData userTestData) {
+  public static void authenticated() {
     createSecurityContext();
     authentication = mock(Authentication.class);
     doReturn(true).when(authentication).isAuthenticated();
     doReturn(authentication).when(securityContext).getAuthentication();
-    doReturn(userTestData.AUTH0ID).when(authentication).getCredentials();
+    doReturn(UserEntityTestData.AUTH0ID).when(authentication).getCredentials();
     SecurityContextHolder.setContext(securityContext);
   }
 
-  public static void badAuthenticated(final UserTestData userTestData) {
+  public static void badAuthenticated() {
     createSecurityContext();
     authentication = mock(Authentication.class);
     doReturn(true).when(authentication).isAuthenticated();
     doReturn(authentication).when(securityContext).getAuthentication();
-    doReturn(userTestData.BAD_AUTH0ID).when(authentication).getCredentials();
+    doReturn(UserEntityTestData.BAD_AUTH0ID).when(authentication)
+        .getCredentials();
     SecurityContextHolder.setContext(securityContext);
   }
 

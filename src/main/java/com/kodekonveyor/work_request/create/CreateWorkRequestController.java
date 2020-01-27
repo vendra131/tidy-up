@@ -1,41 +1,60 @@
+
 package com.kodekonveyor.work_request.create;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.kodekonveyor.authentication.AuthenticatedUserService;
 import com.kodekonveyor.authentication.UserEntity;
+import com.kodekonveyor.authentication.UserEntityRepository;
+import com.kodekonveyor.work_request.AddressDTO;
 import com.kodekonveyor.work_request.AddressEntity;
+import com.kodekonveyor.work_request.AddressUtil;
 import com.kodekonveyor.work_request.WorkRequestEntity;
 import com.kodekonveyor.work_request.WorkRequestRepository;
+import com.kodekonveyor.work_request.WorkTypeEnum;
 
-@Controller
+@RestController
 public class CreateWorkRequestController {
 
   @Autowired
-  private AuthenticatedUserService authenticatedUserService;
-
+  WorkRequestRepository workRequestRepository;
   @Autowired
-  private WorkRequestRepository workRequestRepository;
+  UserEntityRepository userEntityRepository;
+  @Autowired
+  AuthenticatedUserService authenticatedUserService;
+  @Autowired
+  WorkTypeEnum workTypeEnum;
 
   @PostMapping("/work-request")
   public void
       call(@RequestBody final CreateWorkRequestDTO createWorkRequestDTO) {
+
+    WorkRequestValidationUtil.validateWorkRequest(createWorkRequestDTO);
+
+    createWorkRequest(createWorkRequestDTO);
+
+  }
+
+  private void createWorkRequest(
+      final CreateWorkRequestDTO createWorkRequestDTO
+  ) {
     final WorkRequestEntity workRequestEntity = new WorkRequestEntity();
     workRequestEntity.setWorkType(createWorkRequestDTO.getWorkType());
     final UserEntity userEntity = authenticatedUserService.call();
-    final AddressEntity addressEntity = new AddressEntity();
-    addressEntity.setAddress(createWorkRequestDTO.getAddress().getAddress());
-    addressEntity.setCity(createWorkRequestDTO.getAddress().getCity());
-    addressEntity.setCountry(createWorkRequestDTO.getAddress().getCountry());
+
+    final AddressDTO address = createWorkRequestDTO.getAddress();
+    final Long customerId = createWorkRequestDTO.getCustomerId();
+    final AddressEntity addressEntity =
+        AddressUtil.createAddressEntityFromDTO(address, customerId);
     workRequestEntity.setCustomer(userEntity);
-    workRequestEntity.setId(createWorkRequestDTO.getCustomerId());
+    workRequestEntity.setId(customerId);
     workRequestEntity.setDescription(createWorkRequestDTO.getDescription());
     workRequestEntity.setAddress(addressEntity);
-
     workRequestRepository.save(workRequestEntity);
+
   }
 
 }

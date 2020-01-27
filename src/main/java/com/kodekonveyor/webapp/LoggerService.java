@@ -10,7 +10,7 @@ import com.kodekonveyor.tidyup.Application;
 @ExcludeFromCodeCoverage("proxy service")
 public class LoggerService {
 
-  private static final Logger LOGGER =
+  private static final Logger LOGGER = //NOPMD
       LoggerFactory.getLogger(Application.class);
 
   public void call(final String msg) {

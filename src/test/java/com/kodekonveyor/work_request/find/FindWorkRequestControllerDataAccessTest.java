@@ -13,6 +13,8 @@ import org.mockito.quality.Strictness;
 
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
+import com.kodekonveyor.work_request.AddressEntityTestData;
+import com.kodekonveyor.work_request.WorkRequestEntityTestData;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -26,12 +28,11 @@ public class FindWorkRequestControllerDataAccessTest
   @DisplayName("Description of work request is correctly filled in")
   public void test1() {
     assertEquals(
-        workRequestTestData.WORK_REQUEST_LIST_DTO.getRequests().get(0)
-            .getDescription(),
+        WorkRequestEntityTestData.DESCRIPTION,
         findWorkRequestController
             .call(
-                addressTestData.COUNTRY, addressTestData.CITY,
-                workRequestTestData.WORK_TYPE
+                AddressEntityTestData.COUNTRY, AddressEntityTestData.CITY,
+                WorkRequestEntityTestData.WORK_TYPE
             )
             .getRequests().get(0).getDescription()
     );
@@ -41,12 +42,11 @@ public class FindWorkRequestControllerDataAccessTest
   @DisplayName("ID of work request is correctly filled in")
   public void test2() {
     assertEquals(
-        workRequestTestData.WORK_REQUEST_LIST_DTO.getRequests().get(0)
-            .getWorkRequestId(),
+        WorkRequestEntityTestData.WORK_REQUEST_ID,
         findWorkRequestController
             .call(
-                addressTestData.COUNTRY, addressTestData.CITY,
-                workRequestTestData.WORK_TYPE
+                AddressEntityTestData.COUNTRY, AddressEntityTestData.CITY,
+                WorkRequestEntityTestData.WORK_TYPE
             )
             .getRequests().get(0).getWorkRequestId()
     );
@@ -56,12 +56,11 @@ public class FindWorkRequestControllerDataAccessTest
   @DisplayName("Worktype of work request is correctly filled in")
   public void test3() {
     assertEquals(
-        workRequestTestData.WORK_REQUEST_LIST_DTO.getRequests().get(0)
-            .getWorkType(),
+        WorkRequestEntityTestData.WORK_TYPE,
         findWorkRequestController
             .call(
-                addressTestData.COUNTRY, addressTestData.CITY,
-                workRequestTestData.WORK_TYPE
+                AddressEntityTestData.COUNTRY, AddressEntityTestData.CITY,
+                WorkRequestEntityTestData.WORK_TYPE
             )
             .getRequests().get(0).getWorkType()
     );

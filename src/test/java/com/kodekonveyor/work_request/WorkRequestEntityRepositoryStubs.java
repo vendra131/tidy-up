@@ -2,20 +2,32 @@ package com.kodekonveyor.work_request;
 
 import static org.mockito.Mockito.doReturn;
 
+import java.util.List;
+
+import com.kodekonveyor.authentication.UserEntityTestData;
+
 public class WorkRequestEntityRepositoryStubs {
 
   public static void behaviour(
-      final WorkRequestRepository workRequestRepository,
-      final WorkRequestTestData workRequestTestData,
-      final AddressTestData addressTestData
+      final WorkRequestRepository workRequestRepository
   ) {
-    doReturn(workRequestTestData.WORK_REQUEST_ENTITY_LIST)
+
+    doReturn(WorkRequestEntityTestData.list())
         .when(workRequestRepository)
-        .findByWorkRequestId(workRequestTestData.WORK_REQUEST_ID);
-    doReturn(workRequestTestData.WORK_REQUEST_ENTITY_LIST)
+        .findByCustomer(UserEntityTestData.get());
+    doReturn(List.of(WorkRequestEntityTestData.get()))
+        .when(workRequestRepository)
+        .findByWorkRequestId(WorkRequestEntityTestData.WORK_REQUEST_ID);
+    doReturn(WorkRequestEntityTestData.list())
+        .when(workRequestRepository)
+        .findByWorkRequestId(WorkRequestEntityTestData.WORK_REQUEST_ID);
+    doReturn(WorkRequestEntityTestData.list())
         .when(workRequestRepository)
         .findByTypeAndCountryAndCity(
-            WorkTypeEnum.CLEANING, addressTestData.COUNTRY, addressTestData.CITY
+            WorkTypeEnum.CLEANING, AddressEntityTestData.COUNTRY,
+            AddressEntityTestData.CITY
         );
+
   }
+
 }

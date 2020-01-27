@@ -13,7 +13,7 @@
         inputerrorid="$p1"
         errorURL="concat('http://example.com/model.html#',$p1)"
         errortitlestring="zenta:modelErrorTitle($p1,$p4)"
-        errordescription="zenta:modelErrorDescription($p1,$p4)"
+        errordescription="zenta:modelErrorDescription($p1,$p4,$p5)"
 	referencemodel="tidyup.rich"
       	/>
 </checks>

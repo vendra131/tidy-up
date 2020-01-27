@@ -1,4 +1,5 @@
 /target/
+.pmd
 inputs/
 issuesReport.json
 javabuild
@@ -25,5 +26,4 @@ tidyup.zenta.bak
 /tidyup/
 zentaworkaround
 .attach*
-.pmd
-.pmd
+

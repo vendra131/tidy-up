@@ -11,12 +11,9 @@ public class AuthenticatedUserServiceTestBase {
   @Mock
   UserEntityRepository userEntityRepository;
 
-  UserTestData userTestData;
-
   @BeforeEach
   void setUp() {
-    userTestData = new UserTestData();
-    UserEntityRepositoryStubs.behaviour(userEntityRepository, userTestData);
+    UserEntityRepositoryStubs.behaviour(userEntityRepository);
   }
 
 }
