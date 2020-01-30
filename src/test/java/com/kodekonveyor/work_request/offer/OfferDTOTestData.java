@@ -4,7 +4,7 @@ import com.kodekonveyor.work_request.WorkRequestEntityTestData;
 
 public class OfferDTOTestData {
 
-  public final static long VALID_PRICE = 89;
+  public final static long VALID_PRICE = 1;
   public final static long ZERO_PRICE = 0;
   public final static long NEGATIVE_PRICE = -89;
 
