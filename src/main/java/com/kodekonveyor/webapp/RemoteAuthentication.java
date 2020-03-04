@@ -1,7 +1,7 @@
 package com.kodekonveyor.webapp;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,7 +20,7 @@ public class RemoteAuthentication implements Authentication {
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return new ArrayList<>(0);
+    return Collections.emptyList();
   }
 
   @Override
