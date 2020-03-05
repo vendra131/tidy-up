@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kodekonveyor.work_request.WorkRequestDTO;
 import com.kodekonveyor.work_request.WorkRequestEntity;
 import com.kodekonveyor.work_request.WorkRequestRepository;
 import com.kodekonveyor.work_request.WorkRequestStatusEnum;
+import com.kodekonveyor.work_request.WorkRequestUtil;
 
 @RestController
 public class MarkAsPaidController {
@@ -19,7 +21,7 @@ public class MarkAsPaidController {
   WorkRequestRepository repository;
 
   @PutMapping(MARK_AS_PAID_PATH)
-  public void call(
+  public WorkRequestDTO call(
       @PathVariable(MARK_AS_PAID_WORK_REQUEST_ID) final Long workRequestId
   ) {
 
@@ -29,6 +31,11 @@ public class MarkAsPaidController {
       throw new IllegalStateException();
     workRequest.setStatus(WorkRequestStatusEnum.PAID);
     repository.save(workRequest);
+
+    final WorkRequestDTO workRequestDTO = WorkRequestUtil
+        .convertWorkRequestEntityToDTO(workRequest);
+
+    return workRequestDTO;
 
   }
 

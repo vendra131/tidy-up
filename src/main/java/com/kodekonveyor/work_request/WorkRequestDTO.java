@@ -15,5 +15,6 @@ public class WorkRequestDTO {
   private String workType;
   private AddressDTO address;
   private String description;
+  private WorkRequestStatusEnum status;
 
 }

@@ -15,6 +15,7 @@ public class WorkRequestUtil {
     address.setCity(workRequestEntity.getAddress().getCity());
     address.setCountry(workRequestEntity.getAddress().getCountry());
     workRequestDTO.setAddress(address);
+    workRequestDTO.setStatus(workRequestEntity.getStatus());
     return workRequestDTO;
   }
 }
