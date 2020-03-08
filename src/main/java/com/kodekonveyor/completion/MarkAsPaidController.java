@@ -32,10 +32,8 @@ public class MarkAsPaidController {
     workRequest.setStatus(WorkRequestStatusEnum.PAID);
     repository.save(workRequest);
 
-    final WorkRequestDTO workRequestDTO = WorkRequestUtil
+    return WorkRequestUtil
         .convertWorkRequestEntityToDTO(workRequest);
-
-    return workRequestDTO;
 
   }
 

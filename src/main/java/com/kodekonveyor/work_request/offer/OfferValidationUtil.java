@@ -17,7 +17,7 @@ public class OfferValidationUtil {
   }
 
   public static void validatePrice(final OfferDTO offerDTO) {
-    if (offerDTO.getPrice() <= 0)
+    if (offerDTO.getPrice() < WorkRequestConstants.MIN_PRICE)
       throw new ValidationException(WorkRequestConstants.INVALID_PRICE);
   }
 
