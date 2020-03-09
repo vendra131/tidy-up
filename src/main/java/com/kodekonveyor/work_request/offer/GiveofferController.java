@@ -14,9 +14,10 @@ public class GiveofferController {
   WorkRequestRepository workRequestRepository;
 
   @PostMapping("/offer")
-  public void
+  public OfferDTO
       call(@RequestBody final OfferDTO offerDTO) {
     OfferValidationUtil.inputValidation(workRequestRepository, offerDTO);
+    return offerDTO;
   }
 
 }
