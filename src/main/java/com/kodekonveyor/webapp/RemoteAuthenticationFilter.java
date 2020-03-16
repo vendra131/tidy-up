@@ -10,6 +10,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.MarkerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -17,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.kodekonveyor.authentication.UserEntity;
 import com.kodekonveyor.authentication.UserEntityRepository;
+import com.kodekonveyor.logging.LoggingMarkers;
 
 @InterfaceClass
 public class RemoteAuthenticationFilter implements Filter {
@@ -25,7 +28,7 @@ public class RemoteAuthenticationFilter implements Filter {
   private UserEntityRepository userRepository;
 
   @Autowired
-  private LoggerService loggerService;
+  private Logger loggerService;
 
   @Override
   public void doFilter(
@@ -43,7 +46,8 @@ public class RemoteAuthenticationFilter implements Filter {
       final List<UserEntity> users = userRepository.findByAuth0id(auth0id);
       if (users.isEmpty())
         return;
-      loggerService.call("authenticated:" + auth0id);
+      loggerService
+          .info(LoggingMarkers.AUTHENTICATION, "authenticated: " + auth0id);
       final Authentication auth = new RemoteAuthentication(users.get(0));
       SecurityContextHolder.getContext().setAuthentication(auth);
     }

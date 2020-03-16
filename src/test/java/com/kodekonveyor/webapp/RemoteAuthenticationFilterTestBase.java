@@ -8,6 +8,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.slf4j.Logger;
 import org.springframework.security.core.Authentication;
 
 import com.kodekonveyor.authentication.UserEntityRepository;
@@ -20,7 +21,7 @@ public class RemoteAuthenticationFilterTestBase {
   @Mock
   UserEntityRepository userRepository;
   @Mock
-  LoggerService loggerService;
+  Logger loggerService;
   @Mock
   ServletResponse servletResponse;
   @Mock

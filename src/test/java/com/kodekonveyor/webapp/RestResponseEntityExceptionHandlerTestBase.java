@@ -3,6 +3,7 @@ package com.kodekonveyor.webapp;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.slf4j.Logger;
 import org.springframework.http.ResponseEntity;
 
 public class RestResponseEntityExceptionHandlerTestBase {
@@ -10,7 +11,7 @@ public class RestResponseEntityExceptionHandlerTestBase {
   @InjectMocks
   RestResponseEntityExceptionHandler restResponseEntityExceptionHandler;
   @Mock
-  LoggerService loggerService;
+  Logger loggerService;
   ResponseEntity<Object> response;
 
   @BeforeEach

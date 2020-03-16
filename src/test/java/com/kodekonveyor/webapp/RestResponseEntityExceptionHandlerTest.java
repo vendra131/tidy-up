@@ -16,6 +16,7 @@ import org.mockito.quality.Strictness;
 
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
+import com.kodekonveyor.logging.LoggingMarkers;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -29,7 +30,9 @@ public class RestResponseEntityExceptionHandlerTest
   @DisplayName("logs 'not logged in'")
   @Test
   public void test() {
-    verify(loggerService).call(HttpServletRequestTestData.NOT_LOGGED_IN);
+    verify(loggerService).warn(
+        LoggingMarkers.AUTHENTICATION, HttpServletRequestTestData.NOT_LOGGED_IN
+    );
   }
 
   @DisplayName(

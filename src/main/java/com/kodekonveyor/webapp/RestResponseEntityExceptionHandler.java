@@ -1,5 +1,6 @@
 package com.kodekonveyor.webapp;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -10,13 +11,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.kodekonveyor.logging.LoggingMarkers;
+
 @ControllerAdvice
 @InterfaceClass
 public class RestResponseEntityExceptionHandler
     extends ResponseEntityExceptionHandler {
 
   @Autowired
-  private LoggerService loggerService;
+  private Logger loggerService;
 
   @Value("${com.kodekonveyor.tidyup.loginUrl}")
   public String loginUrl;
@@ -30,7 +33,7 @@ public class RestResponseEntityExceptionHandler
   ) {
     final String bodyOfResponse = exception.getMessage();
 
-    loggerService.call("not logged in");
+    loggerService.warn(LoggingMarkers.AUTHENTICATION, "not logged in");
     final HttpHeaders headers = new HttpHeaders();
     headers.add("Location", loginUrl);
     return handleExceptionInternal(
