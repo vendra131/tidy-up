@@ -1,5 +1,11 @@
 package com.kodekonveyor.exception;
 
+import static com.kodekonveyor.exception.ThrowableTesterConstants.CONTAIN;
+import static com.kodekonveyor.exception.ThrowableTesterConstants.EXPECTED_S_BUT_GOT_S;
+import static com.kodekonveyor.exception.ThrowableTesterConstants.MATCH;
+import static com.kodekonveyor.exception.ThrowableTesterConstants.MESSAGE_DOES_NOT_TEMPLATE;
+import static com.kodekonveyor.exception.ThrowableTesterConstants.NO_EXCEPTION_THROWN;
+import static com.kodekonveyor.exception.ThrowableTesterConstants.NO_MESSAGE_OF_THE_EXCEPTION;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -14,7 +20,7 @@ import com.kodekonveyor.webapp.InterfaceClass;
 @Service
 @InterfaceClass
 @ExcludeFromCodeCoverage("temporarily")
-public class ThrowableTester {//NOPMD
+public class ThrowableTester { //NOPMD
 
   public Throwable thrown;
   private static ThrowableTester tester = new ThrowableTester();
@@ -28,10 +34,11 @@ public class ThrowableTester {//NOPMD
   }
 
   public ThrowableTester assertMessageMatches(final String string) {
-    assertNotNull("no message of the exception", thrown.getMessage());
+    assertNotNull(NO_MESSAGE_OF_THE_EXCEPTION, thrown.getMessage());
     assertTrue(
-        "message does not match. \nexpected: " + string + "\n got:" +
-            thrown.getMessage(),
+        String.format(
+            MESSAGE_DOES_NOT_TEMPLATE, MATCH, string, thrown.getMessage()
+        ),
         thrown.getMessage().matches(string)
     );
     return this;
@@ -39,7 +46,9 @@ public class ThrowableTester {//NOPMD
 
   public ThrowableTester assertMessageContains(final String string) {
     assertTrue(
-        "message does not contain: " + string + "\n got:" + thrown.getMessage(),
+        String.format(
+            MESSAGE_DOES_NOT_TEMPLATE, CONTAIN, string, thrown.getMessage()
+        ),
         thrown.getMessage().contains(string)
     );
     return this;
@@ -93,7 +102,7 @@ public class ThrowableTester {//NOPMD
       thrown = exception;
     }
     if (thrown == null)
-      fail("no exception thrown");
+      fail(NO_EXCEPTION_THROWN);
     return this;
   }
 
@@ -104,7 +113,7 @@ public class ThrowableTester {//NOPMD
   public ThrowableTester
       assertException(final Class<? extends Throwable> klass) {
     final String message = String.format(
-        "expected %s but got %s", klass, ExceptionUtils.readStackTrace(thrown)
+        EXPECTED_S_BUT_GOT_S, klass, ExceptionUtils.readStackTrace(thrown)
     );
     assertEquals(message, klass, thrown.getClass());
     return this;
