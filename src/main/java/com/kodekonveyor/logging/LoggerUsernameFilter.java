@@ -13,6 +13,11 @@ import org.slf4j.MDC;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import com.kodekonveyor.webapp.ExcludeFromCodeCoverage;
+import com.kodekonveyor.webapp.InterfaceClass;
+
+@InterfaceClass
+@ExcludeFromCodeCoverage("Interface of underlying framework")
 public class LoggerUsernameFilter implements Filter {
 
   private static final String USER_NAME = "userName";

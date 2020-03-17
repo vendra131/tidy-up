@@ -5,27 +5,30 @@ import com.kodekonveyor.work_request.WorkRequestEntityTestData;
 
 public class CreateWorkRequestDTOTestData {
 
+  private static final long CUSTOMER_ID = 4242l;
+
   public final static Long NEGATIVE_CUSTOMER_ID = (long) -4242;
 
   public final static String WORK_TYPE_INVALID_CHARACTER = "456$%$";
   public final static String INVALID_WORKTYPE = "CARPENTRY";
+  public final static String EMPTY_STRING = "";
 
   public static CreateWorkRequestDTO getAddressMaxLength() {
     final CreateWorkRequestDTO dto = get();
-    dto.setCustomerId((long) 4242);
+    dto.setCustomerId(CUSTOMER_ID);
     dto.getAddress().setAddress(AddressDTOTestData.ADDRESS_OF_120_LENGTH);
     return dto;
   }
 
   public static CreateWorkRequestDTO getAddressZeroLength() {
     final CreateWorkRequestDTO dto = get();
-    dto.getAddress().setAddress("");
+    dto.getAddress().setAddress(EMPTY_STRING);
     return dto;
   }
 
   public static CreateWorkRequestDTO getCustomerIdZero() {
     final CreateWorkRequestDTO dto = get();
-    dto.setCustomerId((long) 0);
+    dto.setCustomerId(0l);
     return dto;
   }
 

@@ -11,18 +11,21 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
-import org.slf4j.MarkerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 
 import com.kodekonveyor.authentication.UserEntity;
 import com.kodekonveyor.authentication.UserEntityRepository;
 import com.kodekonveyor.logging.LoggingMarkers;
 
 @InterfaceClass
+@Component
 public class RemoteAuthenticationFilter implements Filter {
+
+  private static final String AUTHENTICATED = "authenticated: {}";
 
   @Autowired
   private UserEntityRepository userRepository;
@@ -47,7 +50,7 @@ public class RemoteAuthenticationFilter implements Filter {
       if (users.isEmpty())
         return;
       loggerService
-          .info(LoggingMarkers.AUTHENTICATION, "authenticated: " + auth0id);
+          .info(LoggingMarkers.AUTHENTICATION, AUTHENTICATED, auth0id);
       final Authentication auth = new RemoteAuthentication(users.get(0));
       SecurityContextHolder.getContext().setAuthentication(auth);
     }

@@ -66,10 +66,12 @@ public class RemoteAuthenticationFilterTest
             HttpServletRequestTestData.get(), servletResponse, filterChain
         );
     verify(loggerService).info(
-        Mockito.eq(LoggingMarkers.AUTHENTICATION), stringCaptor.capture()
+        Mockito.eq(LoggingMarkers.AUTHENTICATION),
+        Mockito.eq(RemoteAuthenticationTestData.AUTHENTICATED),
+        stringCaptor.capture()
     );
-    WebappTestHelper.assertContains(
-        HttpServletRequestTestData.AUTHENTICATED, stringCaptor.getValue()
+    assertEquals(
+        UserEntityTestData.AUTH0ID, stringCaptor.getValue()
     );
   }
 

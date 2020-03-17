@@ -12,6 +12,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @ExcludeFromCodeCoverage("boilerplate")
 public class WebAppInitializer implements WebApplicationInitializer {
 
+  private static final String ANY_URL = "/*";
   public static XmlWebApplicationContext context;
 
   @Override
@@ -22,18 +23,20 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
     final CharacterEncodingFilter characterEncodingFilter =
         new CharacterEncodingFilter();
-    characterEncodingFilter.setEncoding("UTF-8");
+    characterEncodingFilter.setEncoding(WebappConstants.UTF_8);
     characterEncodingFilter.setForceEncoding(true);
-    servletContext.addFilter("characterEncodingFilter", characterEncodingFilter)
+    servletContext.addFilter(
+        WebappConstants.CHARACTER_ENCODING_FILTER, characterEncodingFilter
+    )
         .addMappingForUrlPatterns(
             null,
-            false, "/*"
+            false, ANY_URL
         );
   }
 
   private XmlWebApplicationContext getContext() {
     context = new XmlWebApplicationContext();
-    context.setConfigLocations("/WEB-INF/applicationContext.xml");
+    context.setConfigLocations(WebappConstants.APPLICATION_CONTEXT_XML_PATH);
     return context;
   }
 

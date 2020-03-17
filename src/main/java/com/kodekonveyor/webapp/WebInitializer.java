@@ -7,6 +7,8 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 public class WebInitializer
     extends AbstractAnnotationConfigDispatcherServletInitializer {
 
+  private static final String ROOT = "/";
+
   @Override
   protected Class<?>[] getRootConfigClasses() {//NOPMD
     return null;
@@ -22,7 +24,7 @@ public class WebInitializer
   @Override
   protected String[] getServletMappings() {
     return new String[] {
-        "/"
+        ROOT
     };
   }
 
