@@ -21,4 +21,11 @@ public class WorkRequestDTOTestData {
 
   }
 
+  public static WorkRequestDTO getStatusPosted() {
+    final WorkRequestDTO workRequestDTO = get();
+    workRequestDTO.setStatus(WorkRequestStatusEnum.POSTED);
+
+    return workRequestDTO;
+  }
+
 }

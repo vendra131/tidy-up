@@ -37,6 +37,13 @@ public class WorkRequestEntityTestData {
     return workRequestEntity;
   }
 
+  public static WorkRequestEntity getStatusPosted() {
+    final WorkRequestEntity workRequestEntity = get();
+    workRequestEntity.setStatus(WorkRequestStatusEnum.POSTED);
+    workRequestEntity.setCustomer(UserEntityTestData.get());
+    return workRequestEntity;
+  }
+
   public static List<WorkRequestEntity> list() {
     return List.of(get());
   }
