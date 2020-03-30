@@ -33,4 +33,14 @@ public class WorkRequestEntityRepositoryStubs {
 
   }
 
+  public static void behaviour2(
+      final WorkRequestRepository workRequestRepository
+  ) {
+    doReturn(List.of(WorkRequestEntityTestData.getStatusPosted()))
+        .when(workRequestRepository)
+        .findByWorkRequestId(
+            WorkRequestEntityTestData.WORK_REQUEST_ID
+        );
+  }
+
 }

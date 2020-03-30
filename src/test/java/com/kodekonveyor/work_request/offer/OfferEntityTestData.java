@@ -14,4 +14,9 @@ public class OfferEntityTestData {
     return offerEntity;
   }
 
+  public static OfferEntity getWorkRequestPosted() {
+    final OfferEntity offerEntity = get();
+    offerEntity.setWorkRequest(WorkRequestEntityTestData.getStatusPosted());
+    return offerEntity;
+  }
 }
