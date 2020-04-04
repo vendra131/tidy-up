@@ -30,7 +30,8 @@ public class GiveofferController {
     return offerDTO;
   }
 
-  private void giveOfferToUser(final OfferDTO offerDTO, final UserEntity userEntity) {
+  private void
+      giveOfferToUser(final OfferDTO offerDTO, final UserEntity userEntity) {
     final OfferEntity offerEntity = new OfferEntity();
     offerEntity.setId(offerDTO.getId());
     offerEntity.setPrice(offerDTO.getPrice());
