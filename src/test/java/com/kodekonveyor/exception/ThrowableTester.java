@@ -78,7 +78,7 @@ public class ThrowableTester {//NOPMD
   }
 
   public ThrowableTester showStackTrace() {
-    thrown.printStackTrace(); // NOPMD AvoidPrintStackTrace
+    thrown.printStackTrace(); //NOPMD
     return this;
   }
 
@@ -89,7 +89,7 @@ public class ThrowableTester {//NOPMD
   public ThrowableTester doAssertThrows(final Thrower thrower) {
     try {
       thrower.throwException();
-    } catch (final Throwable exception) { // NOPMD AvoidCatchingThrowable
+    } catch (final Throwable exception) { //NOPMD
       thrown = exception;
     }
     if (thrown == null)

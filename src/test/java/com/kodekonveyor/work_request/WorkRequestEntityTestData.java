@@ -26,6 +26,7 @@ public class WorkRequestEntityTestData {
     workRequestEntity.setWorkType(WORK_TYPE);
     workRequestEntity.setId(WORK_REQUEST_ID);
     workRequestEntity.setDescription(DESCRIPTION);
+
     workRequestEntity.setAddress(AddressEntityTestData.get());
     return workRequestEntity;
   }
@@ -34,6 +35,7 @@ public class WorkRequestEntityTestData {
     final WorkRequestEntity workRequestEntity = get();
     workRequestEntity.setCustomer(UserEntityTestData.getIdForBadUser());
     workRequestEntity.setId(REVOKE_WORK_REQUEST_ID);
+    workRequestEntity.setAddress(AddressEntityTestData.get());
     return workRequestEntity;
   }
 

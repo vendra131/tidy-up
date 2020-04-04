@@ -48,10 +48,12 @@ public class WorkRequestConstants {
       "City can contain alphabetic characters/letters only";
   public static String INVALID_PRICE = "Invalid Price";
   public static String NEGATIVE_PRICE_EXCEPTION = "Price cannot be negative";
+
   public static final String UNAUTHORIZE_REVOKE_WORK_REQUEST =
       "You can only revoke your own work request";
 
   public static final String OWNER_ID_REGEX = "[0-9]+";
   public static final int MIN_PRICE = 1;
+
 
 }

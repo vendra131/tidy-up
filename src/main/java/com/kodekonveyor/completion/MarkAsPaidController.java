@@ -34,7 +34,6 @@ public class MarkAsPaidController {
 
     return WorkRequestUtil
         .convertWorkRequestEntityToDTO(workRequest);
-
   }
 
 }
