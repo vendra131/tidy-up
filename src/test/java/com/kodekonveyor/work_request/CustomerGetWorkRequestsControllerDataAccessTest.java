@@ -69,4 +69,13 @@ public class CustomerGetWorkRequestsControllerDataAccessTest
     );
   }
 
+  @Test
+  @DisplayName("We return the right status")
+  public void testWorkRequestgetStatus() {
+    assertEquals(
+        WorkRequestStatusEnum.POSTED,
+        WorkRequestEntityTestData.get().getStatus()
+    );
+  }
+
 }

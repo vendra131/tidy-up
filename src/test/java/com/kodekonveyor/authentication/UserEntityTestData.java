@@ -11,6 +11,7 @@ public class UserEntityTestData {
   public static final String LOGIN = "424242";
   public static final String BAD_LOGIN = "424241";
   public static final long USER_ID = 4242;
+  public static final long ID_CUSTOMER_OR_PROVIDER = 4242;
   public static final long BAD_USER_ID = 4241;
   public static final String NO_WORKREQUESTS_ID = "4243";
   public static final String OWNER_ID = "4242";

@@ -46,6 +46,7 @@ public class CustomerGetWorkRequestsController {
       address.setId(workRequestEntity.getAddress().getId());
       workRequestDTO.setAddress(address);
       workRequestDTO.setDescription(workRequestEntity.getDescription());
+      workRequestDTO.setStatus(workRequestEntity.getStatus());
       workRequestListDTO.getRequests().add(workRequestDTO);
     }
 

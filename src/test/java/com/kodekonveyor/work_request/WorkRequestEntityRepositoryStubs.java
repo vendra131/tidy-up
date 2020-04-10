@@ -25,8 +25,7 @@ public class WorkRequestEntityRepositoryStubs {
     doReturn(List.of(WorkRequestEntityTestData.getCustomerBadUser()))
         .when(workRequestRepository)
         .findByWorkRequestId(WorkRequestEntityTestData.REVOKE_WORK_REQUEST_ID);
-    
-    doReturn(WorkRequestEntityTestData.list())
+    doReturn(WorkRequestEntityTestData.listForCountryCityAndTypeQuery())
         .when(workRequestRepository)
         .findByTypeAndCountryAndCity(
             WorkTypeEnum.CLEANING, AddressEntityTestData.COUNTRY,

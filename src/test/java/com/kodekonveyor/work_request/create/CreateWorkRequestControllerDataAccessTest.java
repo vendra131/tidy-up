@@ -24,7 +24,7 @@ import com.kodekonveyor.work_request.WorkRequestEntityTestData;
 @RunWith(MockitoJUnitRunner.class)
 @TestedBehaviour("Data access")
 @TestedService("CreateWorkRequestController")
-public class CreateWorkRequestControllerTest
+public class CreateWorkRequestControllerDataAccessTest
     extends CreateWorkRequestControllerTestBase {
 
   @Override
@@ -118,4 +118,15 @@ public class CreateWorkRequestControllerTest
     );
   }
 
+  @Test
+  @DisplayName(
+    "The provider in the entity is saved correctly"
+  )
+  public void test11() {
+    assertEquals(
+        UserEntityTestData.get(),
+        WorkRequestEntityTestData.get().getProvider()
+    );
+
+  }
 }
