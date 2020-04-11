@@ -22,18 +22,20 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
     final CharacterEncodingFilter characterEncodingFilter =
         new CharacterEncodingFilter();
-    characterEncodingFilter.setEncoding("UTF-8");
+    characterEncodingFilter.setEncoding(WebappConstants.UTF_8);
     characterEncodingFilter.setForceEncoding(true);
-    servletContext.addFilter("characterEncodingFilter", characterEncodingFilter)
+    servletContext.addFilter(
+        WebappConstants.CHARACTER_ENCODING_FILTER, characterEncodingFilter
+    )
         .addMappingForUrlPatterns(
             null,
-            false, "/*"
+            false, WebappConstants.SLASH_STAR
         );
   }
 
   private XmlWebApplicationContext getContext() {
     context = new XmlWebApplicationContext();
-    context.setConfigLocations("/WEB-INF/applicationContext.xml");
+    context.setConfigLocations(WebappConstants.WEB_INF_APPLICATION_CONTEXT_XML);
     return context;
   }
 

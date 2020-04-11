@@ -22,7 +22,7 @@ public class WebInitializer
   @Override
   protected String[] getServletMappings() {
     return new String[] {
-        "/"
+        WebappConstants.SLASH
     };
   }
 

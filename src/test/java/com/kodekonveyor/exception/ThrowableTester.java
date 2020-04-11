@@ -28,9 +28,12 @@ public class ThrowableTester {//NOPMD
   }
 
   public ThrowableTester assertMessageMatches(final String string) {
-    assertNotNull("no message of the exception", thrown.getMessage());
+    assertNotNull(
+        ExceptionConstants.NO_MESSAGE_OF_THE_EXCEPTION, thrown.getMessage()
+    );
     assertTrue(
-        "message does not match. \nexpected: " + string + "\n got:" +
+        ExceptionConstants.MESSAGE_DOES_NOT_MATCH_EXPECTED + string +
+            ExceptionConstants.GOT +
             thrown.getMessage(),
         thrown.getMessage().matches(string)
     );
@@ -39,7 +42,8 @@ public class ThrowableTester {//NOPMD
 
   public ThrowableTester assertMessageContains(final String string) {
     assertTrue(
-        "message does not contain: " + string + "\n got:" + thrown.getMessage(),
+        ExceptionConstants.MESSAGE_DOES_NOT_CONTAIN + string +
+            ExceptionConstants.GOT + thrown.getMessage(),
         thrown.getMessage().contains(string)
     );
     return this;
@@ -93,7 +97,7 @@ public class ThrowableTester {//NOPMD
       thrown = exception;
     }
     if (thrown == null)
-      fail("no exception thrown");
+      fail(ExceptionConstants.NO_EXCEPTION_THROWN);
     return this;
   }
 
@@ -104,7 +108,8 @@ public class ThrowableTester {//NOPMD
   public ThrowableTester
       assertException(final Class<? extends Throwable> klass) {
     final String message = String.format(
-        "expected %s but got %s", klass, ExceptionUtils.readStackTrace(thrown)
+        ExceptionConstants.EXPECTED_S_BUT_GOT_S, klass,
+        ExceptionUtils.readStackTrace(thrown)
     );
     assertEquals(message, klass, thrown.getClass());
     return this;

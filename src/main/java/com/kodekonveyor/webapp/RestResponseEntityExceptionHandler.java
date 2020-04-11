@@ -30,9 +30,9 @@ public class RestResponseEntityExceptionHandler
   ) {
     final String bodyOfResponse = exception.getMessage();
 
-    loggerService.call("not logged in");
+    loggerService.call(WebappConstants.NOT_LOGGED_IN);
     final HttpHeaders headers = new HttpHeaders();
-    headers.add("Location", loginUrl);
+    headers.add(WebappConstants.LOCATION, loginUrl);
     return handleExceptionInternal(
         exception, bodyOfResponse, headers, HttpStatus.FOUND, request
     );
