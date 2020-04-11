@@ -4,6 +4,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.kodekonveyor.authentication.UserEntity;
+
 import lombok.Data;
 
 @Data
@@ -16,5 +18,6 @@ public class WorkRequestDTO {
   private AddressDTO address;
   private String description;
   private WorkRequestStatusEnum status;
+  private UserEntity provider;
 
 }

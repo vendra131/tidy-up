@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
@@ -16,13 +17,14 @@ import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
 import com.kodekonveyor.work_request.WorkRequestDTO;
 import com.kodekonveyor.work_request.WorkRequestDTOTestData;
+import com.kodekonveyor.work_request.WorkRequestEntityTestData;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 @RunWith(MockitoJUnitRunner.class)
-@TestedBehaviour("compile output")
+@TestedBehaviour("statuses")
 @TestedService("AcceptOfferController")
-public class AcceptOfferControllerCompileOutputTest
+public class AcceptOfferControllerStatusesTest
     extends AcceptOfferControllerTestBase {
 
   private WorkRequestDTO workRequestDTOTestData;
@@ -36,37 +38,8 @@ public class AcceptOfferControllerCompileOutputTest
   }
 
   @Test
-  @DisplayName("Work Request returned successfully")
+  @DisplayName("Work request status AGREED returned successfully")
   public void test1() {
-    assertEquals(
-        workRequestDTOTestData,
-        workRequestDTO
-    );
-  }
-
-  @Test
-  @DisplayName("Work Request ID returned successfully")
-  public void test2() {
-
-    assertEquals(
-        workRequestDTOTestData.getWorkRequestId(),
-        workRequestDTO.getWorkRequestId()
-    );
-  }
-
-  @Test
-  @DisplayName("Work Request description returned successfully")
-  public void test3() {
-
-    assertEquals(
-        workRequestDTOTestData.getDescription(),
-        workRequestDTO.getDescription()
-    );
-  }
-
-  @Test
-  @DisplayName("Work request status returned successfully")
-  public void test4() {
 
     assertEquals(
         workRequestDTOTestData.getStatus(),
@@ -75,22 +48,24 @@ public class AcceptOfferControllerCompileOutputTest
   }
 
   @Test
-  @DisplayName("Work request type returned successfully")
-  public void test5() {
-
+  @DisplayName("Work request entity is saved with Status AGREED")
+  public void test2() {
+    Mockito.verify(workRequestRepository).save(captorEntity.capture());
     assertEquals(
-        workRequestDTOTestData.getWorkType(),
-        workRequestDTO.getWorkType()
+        WorkRequestEntityTestData.getProviderAndStatusAgreed(),
+        captorEntity.getValue()
     );
+
   }
 
   @Test
-  @DisplayName("Work request address returned successfully")
-  public void test6() {
-
+  @DisplayName("Provider is set in workRequest and WorkRequestDTO")
+  public void test3() {
+    Mockito.verify(workRequestRepository).save(captorEntity.capture());
     assertEquals(
-        workRequestDTOTestData.getAddress(),
-        workRequestDTO.getAddress()
+        workRequestDTO.getProvider(), captorEntity.getValue().getProvider()
     );
+
   }
+
 }

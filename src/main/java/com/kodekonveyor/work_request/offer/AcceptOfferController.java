@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kodekonveyor.authentication.AuthenticatedUserService;
 import com.kodekonveyor.work_request.AddressDTO;
 import com.kodekonveyor.work_request.WorkRequestDTO;
 import com.kodekonveyor.work_request.WorkRequestEntity;
 import com.kodekonveyor.work_request.WorkRequestRepository;
+import com.kodekonveyor.work_request.WorkRequestStatusEnum;
 
 @RestController
 
@@ -15,9 +17,10 @@ public class AcceptOfferController {
 
   @Autowired
   OfferEntityRepository offerEntityRepository;
-
   @Autowired
-  WorkRequestRepository workRequestReposiory;
+  AuthenticatedUserService authenticatedUserService;
+  @Autowired
+  WorkRequestRepository workRequestRepository;
 
   @PutMapping("/accept/{offerId}")
   public WorkRequestDTO call(final long offerId) {
@@ -25,8 +28,10 @@ public class AcceptOfferController {
     final OfferEntity offerEntity =
         offerEntityRepository.findById(offerId).get();
     final WorkRequestEntity workRequest = offerEntity.getWorkRequest();
-    return getWorkRequestDTO(workRequest);
+    workRequest.setStatus(WorkRequestStatusEnum.AGREED);
+    workRequestRepository.save(workRequest);
 
+    return getWorkRequestDTOStatusAgreed(workRequest);
   }
 
   private WorkRequestDTO
@@ -34,7 +39,6 @@ public class AcceptOfferController {
     final WorkRequestDTO workRequestDTO = new WorkRequestDTO();
     workRequestDTO
         .setDescription(workRequest.getDescription());
-    workRequestDTO.setStatus(workRequest.getStatus());
     workRequestDTO.setWorkRequestId(workRequest.getId());
     workRequestDTO.setWorkType(workRequest.getWorkType());
 
@@ -49,4 +53,13 @@ public class AcceptOfferController {
     workRequestDTO.setAddress(addressDTO);
     return workRequestDTO;
   }
+
+  private WorkRequestDTO
+      getWorkRequestDTOStatusAgreed(final WorkRequestEntity workRequest) {
+    final WorkRequestDTO workRequestDTO = getWorkRequestDTO(workRequest);
+    workRequestDTO.setStatus(workRequest.getStatus());
+    workRequestDTO.setProvider(workRequest.getProvider());
+    return workRequestDTO;
+  }
+
 }
