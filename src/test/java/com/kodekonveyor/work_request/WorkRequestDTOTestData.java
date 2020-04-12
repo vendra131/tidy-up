@@ -2,6 +2,8 @@ package com.kodekonveyor.work_request;
 
 import java.util.List;
 
+import com.kodekonveyor.authentication.UserEntityTestData;
+
 public class WorkRequestDTOTestData {
 
   public static WorkRequestListDTO list() {
@@ -25,6 +27,14 @@ public class WorkRequestDTOTestData {
   public static WorkRequestDTO getStatusPosted() {
     final WorkRequestDTO workRequestDTO = get();
     workRequestDTO.setStatus(WorkRequestStatusEnum.POSTED);
+
+    return workRequestDTO;
+  }
+
+  public static WorkRequestDTO getStatusAgreedAndProvider() {
+    final WorkRequestDTO workRequestDTO = get();
+    workRequestDTO.setStatus(WorkRequestStatusEnum.AGREED);
+    workRequestDTO.setProvider(UserEntityTestData.get());
 
     return workRequestDTO;
   }
