@@ -11,6 +11,7 @@ import com.kodekonveyor.work_request.AddressEntity;
 import com.kodekonveyor.work_request.WorkRequestDTO;
 import com.kodekonveyor.work_request.WorkRequestEntity;
 import com.kodekonveyor.work_request.WorkRequestRepository;
+import com.kodekonveyor.work_request.WorkRequestStatusEnum;
 
 @RestController
 public class MarkCompletionController {
@@ -22,12 +23,14 @@ public class MarkCompletionController {
   public WorkRequestDTO call(final Long workRequestId) {
     final List<WorkRequestEntity> entities =
         workRequestRepository.findByWorkRequestId(workRequestId);
-    final WorkRequestDTO workRequestDTO1 = new WorkRequestDTO();
-    final WorkRequestDTO workRequestDTO = workRequestDTO1;
+
     final WorkRequestEntity entity = entities.get(0);
 
+    if (!entity.getStatus().equals(WorkRequestStatusEnum.AGREED))
+      throw new IllegalStateException();
+    final WorkRequestDTO workRequestDTO = new WorkRequestDTO();
+    workRequestDTO.setStatus(WorkRequestStatusEnum.COMPLETED);
     final AddressDTO address = new AddressDTO();
-
     final AddressEntity addressEntity = entity.getAddress();
 
     address.setAddress(addressEntity.getAddress());
