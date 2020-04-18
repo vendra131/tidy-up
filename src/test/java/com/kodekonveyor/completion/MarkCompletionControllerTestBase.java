@@ -10,13 +10,13 @@ import com.kodekonveyor.work_request.WorkRequestRepository;
 public class MarkCompletionControllerTestBase {
 
   @InjectMocks
-  protected MarkCompletionController markCompletionController;
+  MarkCompletionController markCompletionController;
   @Mock
   WorkRequestRepository workRequestRepository;
 
   @BeforeEach
   void setUp() {
-    WorkRequestEntityRepositoryStubs.behaviour(workRequestRepository);
+    WorkRequestEntityRepositoryStubs.agreedWorkRequest(workRequestRepository);
 
   }
 
