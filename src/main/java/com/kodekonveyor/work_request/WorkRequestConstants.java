@@ -35,6 +35,9 @@ public class WorkRequestConstants {
       "Work Request Id should be positive";
   public static String DECIMAL_WORK_REQUEST_ID_EXCEPTION =
       "Work Request Id should be an integer";
+  public static final String WORK_REQUEST_IS_NOT_POSTED =
+      "Work request is not posted";
+
   public static String CUSTOMER_ID_LENGTH_ERROR =
       "Customer ID should not be longer than 4 digit";
   public static String ZERO_WORK_REQUEST_ID_EXCEPTION =
@@ -54,6 +57,5 @@ public class WorkRequestConstants {
 
   public static final String OWNER_ID_REGEX = "[0-9]+";
   public static final int MIN_PRICE = 1;
-
 
 }
