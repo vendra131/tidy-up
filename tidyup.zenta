@@ -2431,17 +2431,15 @@ When the work request is not in POSTED status, only its customer and provider ca
         <element xsi:type="zenta:BasicRelationship" id="e6cfb570-5603-47e5-ab59-139cd12cafb8" ancestor="04ce9a45-2873-4e6b-abea-6f04ce048123" source="5d44e73e-7b28-4b57-a30f-ceb609ddb78c" target="22f33985-4c6e-49cb-a617-4d74cffb1701"/>
         <element xsi:type="zenta:BasicRelationship" id="fe399701-14fc-40d3-bafa-257659511a85" ancestor="04ce9a45-2873-4e6b-abea-6f04ce048123" source="8793433c-f697-4ebd-9f66-0026735c9c4d" target="22f33985-4c6e-49cb-a617-4d74cffb1701"/>
         <element xsi:type="zenta:BasicObject" name="Logging" id="8ae4e89a-a47a-4fe8-9c73-f5ff85f16277" ancestor="behaviour">
-          <documentation>All activities should be logged with level INFO before anything else is done with the user initiating the activity (if known), and the name of the controller.
+          <documentation>All activities should be logged with level INFO before anything else is done.
 
-The result of all successful activities should be logged with level FINE the name of the controller, id(s) of the result(s) (if there is an id), or the value, using the string SUCCESS
+The result of all successful activities should be logged with level DEBUG, id(s) of the result(s) (if there is an id), or the value, using the string SUCCESS
 
-The result of all failures should be logged with level WARNING, with the name of the controller, the string &quot;FAILURE&quot;, and the reason of the failure.
+The result of all failures should be logged with level WARNING, the string &quot;FAILURE&quot;, and the reason of the failure.
 
-The logging is implemented by LoggerService. All other controllers and services should call that.
+The logging is implemented by org.slf4j.Logger. All other controllers and services should call that.
 
-If the user is not knowns, the &quot;user&quot; parameter must be null.
-
-See https://www.vogella.com/tutorials/Logging/article.html for how to log.
+See https://www.baeldung.com/java-logging-intro for how to log.
 </documentation>
         </element>
       </folder>
@@ -4558,7 +4556,7 @@ no other mechanism should write it</documentation>
           <sourceConnection xsi:type="zenta:Connection" id="e5808957-6725-44cb-800a-270288ee1f1b" source="560e90cc-bcc4-4c94-a7f8-6aacc99820ca" target="ce70dbea-aa87-4783-af55-bf7a2901c79a" relationship="83e77c0b-5d82-47eb-a37b-88ae0d4607ee"/>
         </child>
       </element>
-      <element xsi:type="zenta:BasicObject" name="LoggerService" id="9cf581cb-d94f-43c8-955f-3a0e05da4602" ancestor="4dce3f0a-a681-447a-896b-d0ca2c1585fe"/>
+      <element xsi:type="zenta:BasicObject" name="Logger" id="9cf581cb-d94f-43c8-955f-3a0e05da4602" ancestor="4dce3f0a-a681-447a-896b-d0ca2c1585fe"/>
       <element xsi:type="zenta:BasicObject" name="level" id="bd8dc480-51bb-4907-8c15-ca07b15e4b8f" ancestor="7a959e3d-31b1-491f-82dc-57838b15ce59"/>
       <element xsi:type="zenta:BasicRelationship" id="acc9950b-f903-4ba5-a19e-05582993d133" ancestor="a99c1f63-c4f6-4d0a-b9e8-5bf3aa5284a2" source="9cf581cb-d94f-43c8-955f-3a0e05da4602" target="bd8dc480-51bb-4907-8c15-ca07b15e4b8f"/>
       <element xsi:type="zenta:BasicObject" name="user" id="edf53a00-74e9-405d-81d8-fb155ccecfe7" ancestor="7a959e3d-31b1-491f-82dc-57838b15ce59"/>
