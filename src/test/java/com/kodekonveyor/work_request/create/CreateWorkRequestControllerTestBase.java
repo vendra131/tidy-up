@@ -3,6 +3,7 @@ package com.kodekonveyor.work_request.create;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.slf4j.Logger;
 
 import com.kodekonveyor.authentication.AuthenticatedUserService;
 import com.kodekonveyor.authentication.AuthenticatedUserStubs;
@@ -25,6 +26,9 @@ public class CreateWorkRequestControllerTestBase {
   AddressEntity addressEntity;
   @Mock
   AuthenticatedUserService authenticatedUserService;
+
+  @Mock
+  Logger loggerService; //NOPMD
 
   @BeforeEach
   void setUp() {

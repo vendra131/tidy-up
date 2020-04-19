@@ -1,9 +1,9 @@
 package com.kodekonveyor.exception;
 
+import static org.assertj.core.api.Assertions.fail;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.junit.platform.commons.util.ExceptionUtils;
 import org.springframework.stereotype.Service;
@@ -20,6 +20,7 @@ public class ThrowableTester {//NOPMD
   private static ThrowableTester tester = new ThrowableTester();
 
   private ThrowableTester() {
+
   }
 
   public ThrowableTester assertMessageIs(final String message) {
@@ -90,8 +91,17 @@ public class ThrowableTester {//NOPMD
     return tester.doAssertThrows(thrower);
   }
 
+  public static void assertNoException(final Thrower thrower) {
+    try {
+      thrower.throwException();
+    } catch (final Throwable exception) {//NOPMD
+      fail(exception.getMessage());
+    }
+  }
+
   public ThrowableTester doAssertThrows(final Thrower thrower) {
     try {
+      thrown = null;//NOPMD
       thrower.throwException();
     } catch (final Throwable exception) { //NOPMD
       thrown = exception;
