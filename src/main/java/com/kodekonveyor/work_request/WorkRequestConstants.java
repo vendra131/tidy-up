@@ -55,6 +55,9 @@ public class WorkRequestConstants {
   public static final String UNAUTHORIZE_REVOKE_WORK_REQUEST =
       "You can only revoke your own work request";
 
+  public static final String UNAUTHORIZE_GET_WORK_REQUESTS_FOR_USER =
+          "You can only fetch your own work request";
+
   public static final String OWNER_ID_REGEX = "[0-9]+";
   public static final int MIN_PRICE = 1;
   public static final String SERVICE_CALL_NAME = "Service Call Name: {}";

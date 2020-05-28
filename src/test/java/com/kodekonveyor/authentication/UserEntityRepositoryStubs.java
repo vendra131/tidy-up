@@ -20,6 +20,8 @@ public class UserEntityRepositoryStubs {
         .findByAuth0id(UserEntityTestData.BAD_AUTH0ID);
     doReturn(Optional.of(UserEntityTestData.get())).when(userRepository)
         .findById(UserEntityTestData.USER_ID);
+    doReturn(Optional.of(UserEntityTestData.getForUnauthicatedCalls())).when(userRepository)
+            .findById(UserEntityTestData.USER_ID_FOR_UNAUTHENTICATED_CALL);
     doReturn(Optional.of(UserEntityTestData.getIdForNOWorkRequests()))
         .when(userRepository)
         .findById(UserEntityTestData.NO_WORKREQUESTS_ID_ASLONG);
