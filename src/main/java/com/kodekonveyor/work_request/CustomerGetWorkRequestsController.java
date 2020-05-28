@@ -3,6 +3,7 @@ package com.kodekonveyor.work_request;
 import java.util.List;
 import java.util.Optional;
 
+import com.kodekonveyor.authentication.AuthenticatedUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,8 @@ import com.kodekonveyor.authentication.UserEntity;
 import com.kodekonveyor.authentication.UserEntityRepository;
 import com.kodekonveyor.webapp.ValidationException;
 
+import static com.kodekonveyor.work_request.WorkRequestConstants.UNAUTHORIZE_GET_WORK_REQUESTS_FOR_USER;
+
 @RestController
 public class CustomerGetWorkRequestsController {
 
@@ -18,6 +21,9 @@ public class CustomerGetWorkRequestsController {
   WorkRequestRepository workRequestRepository;
   @Autowired
   UserEntityRepository userEntityRepository;
+  @Autowired
+  AuthenticatedUserService authenticatedUserService;
+
 
   @GetMapping("/work-request/byOwner/{ownerId}")
   public WorkRequestListDTO call(final String ownerId) {
@@ -27,6 +33,11 @@ public class CustomerGetWorkRequestsController {
         userEntityRepository.findById(Long.parseLong(ownerId));
     if (user.isEmpty())
       throw new ValidationException(WorkRequestConstants.INVALID_OWNERID);
+
+    final UserEntity sessionUser = authenticatedUserService.call();
+
+    if (sessionUser.getId() != user.get().getId())
+      throw new ValidationException(UNAUTHORIZE_GET_WORK_REQUESTS_FOR_USER);
 
     final List<WorkRequestEntity> requests =
         workRequestRepository.findByCustomer(user.get());

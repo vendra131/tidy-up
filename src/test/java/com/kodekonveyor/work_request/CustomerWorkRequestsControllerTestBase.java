@@ -1,5 +1,7 @@
 package com.kodekonveyor.work_request;
 
+import com.kodekonveyor.authentication.AuthenticatedUserService;
+import com.kodekonveyor.authentication.AuthenticatedUserStubs;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -18,6 +20,8 @@ public class CustomerWorkRequestsControllerTestBase {
   UserEntityRepository userEntityRepository;
   @Mock
   AddressEntity addressEntity;
+  @Mock
+  AuthenticatedUserService authenticatedUserService;
 
   @BeforeEach
   void setUp() {
@@ -25,6 +29,7 @@ public class CustomerWorkRequestsControllerTestBase {
     WorkRequestEntityRepositoryStubs
         .behaviour(workRequestRepository);
     UserEntityRepositoryStubs.behaviour(userEntityRepository);
+    AuthenticatedUserStubs.behaviour(authenticatedUserService);
   }
 
 }
