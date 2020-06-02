@@ -2601,7 +2601,7 @@ See https://www.baeldung.com/java-logging-intro for how to log.
           <sourceConnection xsi:type="zenta:Connection" id="e24e86ad-ddfe-4a4a-b2b5-bf1064d44989" source="2469106d-d41b-47a1-beff-7c6a974437b3" target="d8ab07c5-bbe2-4cc3-9649-56c4e45b6e71" relationship="1e879ec7-a4a5-43d5-afd3-519895ecc0b1"/>
           <sourceConnection xsi:type="zenta:Connection" id="12ac597a-de71-4eb9-9ee0-dfeeaf3b6637" source="2469106d-d41b-47a1-beff-7c6a974437b3" target="f4bcd822-9498-4268-8e6c-eb2ea65fce4f" relationship="3819c497-d9ec-4245-a830-d8aed879f649"/>
         </child>
-        <child xsi:type="zenta:DiagramObject" id="aee055bb-cd3e-41f9-8db8-b12b09f71537" targetConnections="f4eaf94a-2cd8-4396-85ab-81eef30e8096 5eded320-8073-474f-a211-429812dbd074" zentaElement="e5a09833-8e15-4ad8-8e84-7fae3eff5e05">
+        <child xsi:type="zenta:DiagramObject" id="aee055bb-cd3e-41f9-8db8-b12b09f71537" targetConnections="f4eaf94a-2cd8-4396-85ab-81eef30e8096 5eded320-8073-474f-a211-429812dbd074 b2ec094d-d341-4d37-a11b-9b288bda42bc" zentaElement="e5a09833-8e15-4ad8-8e84-7fae3eff5e05">
           <bounds x="468" y="24" width="144" height="73"/>
           <sourceConnection xsi:type="zenta:Connection" id="b77724d4-5c9d-4e7b-b230-148fcdb481e7" source="aee055bb-cd3e-41f9-8db8-b12b09f71537" target="2469106d-d41b-47a1-beff-7c6a974437b3" relationship="f43d89e8-b4cf-442d-a3e7-6f58930fd464"/>
           <sourceConnection xsi:type="zenta:Connection" id="5859b43f-a2d7-4c74-afc1-cfeb02cf9fd2" source="aee055bb-cd3e-41f9-8db8-b12b09f71537" target="752489c9-a06d-430d-9336-bee833f0afc5" relationship="6561d0b8-127e-4036-9f60-cda149df3ec5"/>
@@ -2657,11 +2657,16 @@ See https://www.baeldung.com/java-logging-intro for how to log.
         <child xsi:type="zenta:DiagramObject" id="182b0c11-1c29-405e-b36a-accbd9eec74e" targetConnections="ee0be8d8-50c8-47d9-9726-7c21cd29a195" zentaElement="8ae4e89a-a47a-4fe8-9c73-f5ff85f16277">
           <bounds x="795" y="169" width="-1" height="-1"/>
         </child>
+        <child xsi:type="zenta:DiagramObject" id="351cfbf3-a8a0-471c-bc4a-fc8a40dcd926" zentaElement="22f33985-4c6e-49cb-a617-4d74cffb1701">
+          <bounds x="585" y="199" width="-1" height="-1"/>
+          <sourceConnection xsi:type="zenta:Connection" id="b2ec094d-d341-4d37-a11b-9b288bda42bc" source="351cfbf3-a8a0-471c-bc4a-fc8a40dcd926" target="aee055bb-cd3e-41f9-8db8-b12b09f71537" relationship="cb6acb83-164e-4ec1-98ee-987514256785"/>
+        </child>
       </element>
       <element xsi:type="zenta:BasicObject" name="CreateWorkRequestController" id="c344d36f-3f83-477e-8921-f9242185d883" ancestor="5491f72b-93ec-4ad5-b6a9-2653fe808a03"/>
       <element xsi:type="zenta:BasicObject" name="CREATE_WORK_REQUEST" id="3fdda948-21a7-4ea3-9695-c6deda1ce29e" ancestor="ffbe5058-5089-4c5a-965d-e996df089f8e"/>
       <element xsi:type="zenta:BasicObject" name="WORK_REQUEST_ENTITY" id="35cdf1eb-9671-4b56-bccd-ab337e7dcca2" ancestor="ffbe5058-5089-4c5a-965d-e996df089f8e"/>
       <element xsi:type="zenta:BasicRelationship" id="272c4369-0711-49ef-a8f0-c0b0d0cff65b" ancestor="a0ec85e2-1b1a-47a4-8c98-9f413bb7b995" source="e5a09833-8e15-4ad8-8e84-7fae3eff5e05" target="8ae4e89a-a47a-4fe8-9c73-f5ff85f16277"/>
+      <element xsi:type="zenta:BasicRelationship" id="cb6acb83-164e-4ec1-98ee-987514256785" ancestor="a0ec85e2-1b1a-47a4-8c98-9f413bb7b995" source="22f33985-4c6e-49cb-a617-4d74cffb1701" target="e5a09833-8e15-4ad8-8e84-7fae3eff5e05"/>
     </folder>
     <folder name="4.2 List own work requests" id="eeca3a17-40eb-490c-bb78-41273eeb849c">
       <element xsi:type="zenta:BasicObject" name="/work-request/byOwner/{ownerId}" id="e3223418-88e1-47fe-b677-96a20bdfd81d" ancestor="2cb904ef-0cda-422b-82f6-0509c595b8fd"/>
