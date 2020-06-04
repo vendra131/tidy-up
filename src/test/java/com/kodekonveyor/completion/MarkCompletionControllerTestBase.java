@@ -6,6 +6,7 @@ import org.mockito.Mock;
 
 import com.kodekonveyor.work_request.WorkRequestEntityRepositoryStubs;
 import com.kodekonveyor.work_request.WorkRequestRepository;
+import org.slf4j.Logger;
 
 public class MarkCompletionControllerTestBase {
 
@@ -13,6 +14,8 @@ public class MarkCompletionControllerTestBase {
   MarkCompletionController markCompletionController;
   @Mock
   WorkRequestRepository workRequestRepository;
+  @Mock
+  Logger loggerService;
 
   @BeforeEach
   void setUp() {
