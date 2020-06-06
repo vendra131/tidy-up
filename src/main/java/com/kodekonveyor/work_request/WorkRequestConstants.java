@@ -86,4 +86,8 @@ public class WorkRequestConstants {
   public static final String FAILURE = "FAILURE";
   public static final String WORK_REQUEST_RECEIVED = "workrequest.received";
   public static final String OPEN_WORK_REQUEST = "Open work request: {}";
+
+  public static final String LOG_API_CALL = "Api execution starts!";
+  public static final String LOG_API_CALL_STATUS = "Api call status : {}";
+  public static final String LOG_API_CALL_FALURE_STATUS = "Api call status : {}, error : {}";
 }

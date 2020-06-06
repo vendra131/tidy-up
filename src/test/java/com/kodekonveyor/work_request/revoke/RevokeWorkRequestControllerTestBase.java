@@ -11,6 +11,7 @@ import com.kodekonveyor.authentication.UserEntityRepositoryStubs;
 import com.kodekonveyor.work_request.AddressEntity;
 import com.kodekonveyor.work_request.WorkRequestEntityRepositoryStubs;
 import com.kodekonveyor.work_request.WorkRequestRepository;
+import org.slf4j.Logger;
 
 public class RevokeWorkRequestControllerTestBase {
 
@@ -25,6 +26,8 @@ public class RevokeWorkRequestControllerTestBase {
   AddressEntity addressEntity;
   @Mock
   AuthenticatedUserService authenticatedUserService;
+  @Mock
+  Logger loggerService;
 
   @BeforeEach
   void setUp() {
