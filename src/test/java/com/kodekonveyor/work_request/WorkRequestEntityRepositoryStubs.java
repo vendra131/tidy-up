@@ -3,6 +3,7 @@ package com.kodekonveyor.work_request;
 import static org.mockito.Mockito.doReturn;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.kodekonveyor.authentication.UserEntityTestData;
 
@@ -69,5 +70,15 @@ public class WorkRequestEntityRepositoryStubs {
             WorkRequestEntityTestData.WORK_REQUEST_ID
         );
   }
+
+    public static void verifiedWorkRequest(
+            final WorkRequestRepository workRequestRepository
+    ) {
+        doReturn(Optional.of(WorkRequestEntityTestData.getStatusVerified()))
+                .when(workRequestRepository)
+                .findById(
+                        WorkRequestEntityTestData.VERIFIED_WORK_REQUEST_ID
+                );
+    }
 
 }

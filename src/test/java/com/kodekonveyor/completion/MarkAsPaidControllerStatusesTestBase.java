@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import com.kodekonveyor.work_request.WorkRequestEntity;
 import com.kodekonveyor.work_request.WorkRequestEntityTestData;
 import com.kodekonveyor.work_request.WorkRequestRepository;
+import org.slf4j.Logger;
 
 public class MarkAsPaidControllerStatusesTestBase {
 
@@ -19,6 +20,8 @@ public class MarkAsPaidControllerStatusesTestBase {
   protected MarkAsPaidController markAsPaidController;
   @Mock
   protected WorkRequestRepository workRequestRepository;
+  @Mock
+  protected Logger loggerService;
 
   protected final WorkRequestEntity workRequestEntityData =
       WorkRequestEntityTestData.get();

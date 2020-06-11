@@ -11,5 +11,5 @@ public class CompletionConstants {
   public static final String SUCCESS = "SUCCESS";
   public static final String FAILURE = "FAILURE";
   public static final String INVALID_WORK_REQUEST_STATUS = "Invalid work status!";
-
+  public static final String INVALID_WORK_STATE_FOR_MARK_PAID = "Invalid work request status for marking as paid.";
 }
