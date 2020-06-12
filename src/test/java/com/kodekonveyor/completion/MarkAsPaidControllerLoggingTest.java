@@ -4,13 +4,10 @@ import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
 import com.kodekonveyor.exception.ThrowableTester;
 import com.kodekonveyor.work_request.WorkRequestEntityRepositoryStubs;
-import org.junit.Assert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -21,6 +18,7 @@ import static com.kodekonveyor.completion.CompletionConstantsTestData.EXPECTED_F
 import static com.kodekonveyor.completion.CompletionConstantsTestData.EXPECTED_LOG_API_CALL;
 import static com.kodekonveyor.completion.CompletionConstantsTestData.EXPECTED_LOG_API_FAILURE;
 import static com.kodekonveyor.completion.CompletionConstantsTestData.EXPECTED_LOG_API_STATUS;
+import static com.kodekonveyor.completion.CompletionConstantsTestData.EXPECTED_MARK_PAID_ERROR_INVALID_STATUS;
 import static com.kodekonveyor.completion.CompletionConstantsTestData.EXPECTED_SUCCESS_STATUS;
 import static com.kodekonveyor.work_request.WorkRequestEntityTestData.VERIFIED_WORK_REQUEST_ID;
 import static org.mockito.ArgumentMatchers.eq;
@@ -33,9 +31,6 @@ import static org.mockito.ArgumentMatchers.eq;
 
 public class MarkAsPaidControllerLoggingTest
         extends MarkAsPaidControllerStatusesTestBase {
-
-    @Captor
-    ArgumentCaptor<String> errorCaptor;
 
     @Test
     @DisplayName("Start of Mark as paid api execution is logged.")
@@ -66,9 +61,11 @@ public class MarkAsPaidControllerLoggingTest
         ThrowableTester.assertThrows(() -> markAsPaidController.call(workRequestEntityData.getId()));
 
         Mockito.verify(loggerService)
-                .warn(eq(EXPECTED_LOG_API_FAILURE), eq(EXPECTED_FAILURE_STATUS), errorCaptor.capture());
-
-        Assert.assertEquals(errorCaptor.getValue(), CompletionConstantsTestData.EXPECTED_MARK_PAID_ERROR_INVALID_STATUS);
+                .warn(
+                        eq(EXPECTED_LOG_API_FAILURE),
+                        eq(EXPECTED_FAILURE_STATUS),
+                        eq(EXPECTED_MARK_PAID_ERROR_INVALID_STATUS)
+                );
     }
 
 }
