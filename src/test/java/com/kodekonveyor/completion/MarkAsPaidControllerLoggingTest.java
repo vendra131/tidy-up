@@ -3,7 +3,7 @@ package com.kodekonveyor.completion;
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
 import com.kodekonveyor.exception.ThrowableTester;
-import com.kodekonveyor.work_request.WorkRequestEntityRepositoryStubs;
+import com.kodekonveyor.work_request.WorkRequestStatusEnum;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +20,6 @@ import static com.kodekonveyor.completion.CompletionConstantsTestData.EXPECTED_L
 import static com.kodekonveyor.completion.CompletionConstantsTestData.EXPECTED_LOG_API_STATUS;
 import static com.kodekonveyor.completion.CompletionConstantsTestData.EXPECTED_MARK_PAID_ERROR_INVALID_STATUS;
 import static com.kodekonveyor.completion.CompletionConstantsTestData.EXPECTED_SUCCESS_STATUS;
-import static com.kodekonveyor.work_request.WorkRequestEntityTestData.VERIFIED_WORK_REQUEST_ID;
 import static org.mockito.ArgumentMatchers.eq;
 
 @ExtendWith(MockitoExtension.class)
@@ -35,9 +34,9 @@ public class MarkAsPaidControllerLoggingTest
     @Test
     @DisplayName("Start of Mark as paid api execution is logged.")
     public void test1() {
-        WorkRequestEntityRepositoryStubs.verifiedWorkRequest(workRequestRepository);
+        workRequestEntityData.setStatus(WorkRequestStatusEnum.VERIFIED);
 
-        markAsPaidController.call(VERIFIED_WORK_REQUEST_ID);
+        markAsPaidController.call(workRequestEntityData.getId());
 
         Mockito.verify(loggerService)
                 .info(eq(EXPECTED_LOG_API_CALL));
@@ -46,9 +45,9 @@ public class MarkAsPaidControllerLoggingTest
     @Test
     @DisplayName("End of Mark as paid api execution is logged.")
     public void test2() {
-        WorkRequestEntityRepositoryStubs.verifiedWorkRequest(workRequestRepository);
+        workRequestEntityData.setStatus(WorkRequestStatusEnum.VERIFIED);
 
-        markAsPaidController.call(VERIFIED_WORK_REQUEST_ID);
+        markAsPaidController.call(workRequestEntityData.getId());
 
         Mockito.verify(loggerService)
                 .debug(eq(EXPECTED_LOG_API_STATUS
