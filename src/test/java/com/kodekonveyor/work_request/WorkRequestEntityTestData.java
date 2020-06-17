@@ -10,7 +10,6 @@ public class WorkRequestEntityTestData {
   public static final String NO_WORKREQUESTS_ID = "4243";
   public static final Long NON_POSITIVE_WORK_REQUEST_ID = 0L;
   public static final Long WORK_REQUEST_ID = 4242L;
-  public static final Long VERIFIED_WORK_REQUEST_ID = 4244L;
   public static final Long INVALID_WORK_REQUEST_ID = 3454L;
 
   public static final Long REVOKE_WORK_REQUEST_ID = 4241L;
@@ -136,13 +135,6 @@ public class WorkRequestEntityTestData {
   public static WorkRequestEntity getStatusAgreed() {
     final WorkRequestEntity workRequestEntity = get();
     workRequestEntity.setStatus(WorkRequestStatusEnum.AGREED);
-    return workRequestEntity;
-  }
-
-  public static WorkRequestEntity getStatusVerified() {
-    final WorkRequestEntity workRequestEntity = get();
-    workRequestEntity.setId(VERIFIED_WORK_REQUEST_ID);
-    workRequestEntity.setStatus(WorkRequestStatusEnum.VERIFIED);
     return workRequestEntity;
   }
 
