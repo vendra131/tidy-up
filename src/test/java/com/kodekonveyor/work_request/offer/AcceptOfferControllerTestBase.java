@@ -8,6 +8,7 @@ import org.mockito.Mock;
 
 import com.kodekonveyor.authentication.AuthenticatedUserService;
 import com.kodekonveyor.authentication.AuthenticatedUserStubs;
+import com.kodekonveyor.webapp.LoggerService;
 import com.kodekonveyor.work_request.WorkRequestEntity;
 import com.kodekonveyor.work_request.WorkRequestEntityRepositoryStubs;
 import com.kodekonveyor.work_request.WorkRequestRepository;
@@ -22,6 +23,8 @@ public class AcceptOfferControllerTestBase {
   WorkRequestRepository workRequestRepository;
   @Mock
   AuthenticatedUserService authenticatedUserService;
+  @Mock
+  LoggerService loggerService;
   @Captor
   ArgumentCaptor<WorkRequestEntity> captorEntity;
 

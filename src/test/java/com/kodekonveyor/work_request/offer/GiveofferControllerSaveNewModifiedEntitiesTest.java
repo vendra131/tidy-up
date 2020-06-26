@@ -59,7 +59,7 @@ public class GiveofferControllerSaveNewModifiedEntitiesTest
   @DisplayName("The price of the offer is saved successfully ")
   public void testSavedPrice() {
     assertEquals(
-        Long.valueOf(OfferDTOTestData.VALID_PRICE), OfferEntityTestData.get().getPrice()
+        Long.valueOf(OfferEntityTestData.VALID_PRICE), OfferEntityTestData.get().getPrice()
     );
   }
 }
