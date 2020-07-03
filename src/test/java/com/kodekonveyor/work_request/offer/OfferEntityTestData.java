@@ -5,6 +5,11 @@ import com.kodekonveyor.work_request.WorkRequestEntityTestData;
 
 public class OfferEntityTestData {
 
+  public final static long VALID_PRICE = 1;
+  public final static long ZERO_PRICE = 0;
+  public final static long NEGATIVE_PRICE = -1;
+  public final static long ID = 0;
+
   public static OfferEntity get() {
     final OfferEntity offerEntity = new OfferEntity();
     offerEntity.setId(OfferDTOTestData.get().getId());

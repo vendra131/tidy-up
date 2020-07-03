@@ -119,7 +119,7 @@ public class GiveofferControllerInputValidationTest
             OfferDTOTestData.get()
         );
     assertEquals(
-        OfferDTOTestData.VALID_PRICE,
+        OfferEntityTestData.VALID_PRICE,
         OfferDTOTestData.get().getPrice()
     );
 

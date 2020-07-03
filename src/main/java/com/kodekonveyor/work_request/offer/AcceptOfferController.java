@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kodekonveyor.authentication.AuthenticatedUserService;
+import com.kodekonveyor.webapp.LoggerService;
 import com.kodekonveyor.work_request.AddressDTO;
 import com.kodekonveyor.work_request.WorkRequestDTO;
 import com.kodekonveyor.work_request.WorkRequestEntity;
@@ -21,16 +22,18 @@ public class AcceptOfferController {
   AuthenticatedUserService authenticatedUserService;
   @Autowired
   WorkRequestRepository workRequestRepository;
+  @Autowired
+  LoggerService loggerService;
 
   @PutMapping("/accept/{offerId}")
   public WorkRequestDTO call(final long offerId) {
-
+    loggerService.call(OfferConstants.ACCEPT_OFFER_CONTROLLER_IS_STARTED);
     final OfferEntity offerEntity =
         offerEntityRepository.findById(offerId).get();
     final WorkRequestEntity workRequest = offerEntity.getWorkRequest();
     workRequest.setStatus(WorkRequestStatusEnum.AGREED);
     workRequestRepository.save(workRequest);
-
+    loggerService.call(OfferConstants.SUCCESS + workRequest.getId());
     return getWorkRequestDTOStatusAgreed(workRequest);
   }
 

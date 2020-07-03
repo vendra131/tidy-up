@@ -43,7 +43,7 @@ public class GiveofferControllerCompileOutputTest
   @DisplayName("The price of the offer is returned")
   public void testPrice() {
     assertEquals(
-        OfferDTOTestData.VALID_PRICE,
+        OfferEntityTestData.VALID_PRICE,
         offerDTO.getPrice()
     );
   }
